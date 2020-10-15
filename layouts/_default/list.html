@@ -1,0 +1,18 @@
+{{ partial "header.html" . }}
+
+<h1 id="page_title">{{ .Title }}</h1>
+
+{{- .Content -}}
+
+<div id="list-container">
+{{ range .Pages }}
+    <a href="{{ .Permalink }}">
+        <h1>{{ .Title }}</h1>
+        <h2>{{ .PublishDate.Format "Jan 02, 2006" }}</h2>
+        <h3>{{ range .Params.tags }} ({{- . -}}) {{end}}</h3>
+        <p>{{ .Description }}</p>
+    </a>
+{{ end }}
+</div>
+
+{{ partial "footer.html" . }}

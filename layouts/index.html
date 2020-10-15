@@ -1,0 +1,11 @@
+{{ partial "header.html" . }}
+
+<h1 id="page_title">{{ .Title }}</h1>
+
+{{- .Content -}}
+
+{{ range .Site.RegularPages }}
+    <a href="{{ .Permalink }}">{{ .Title }}</a>
+    <br>
+{{ end }}
+{{ partial "footer.html" . }}

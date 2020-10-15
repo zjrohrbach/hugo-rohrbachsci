@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ .Title }} - {{ .Site.Title }}</title>
+    {{ .Hugo.Generator }}
+    {{ $styles := resources.Get "style.scss" | toCSS }}
+    <link rel="stylesheet" href="{{ $styles.Permalink }}">
+</head>
+
+<body>
+
+<a id="website-name" href="/">Rohrbach Science</a>
+
+<nav class="sidebar-nav">
+    {{ $currentPage := . }}
+    <a{{if eq .URL "/" }} id="you-are-here"{{end}} href="/">Home</a>
+    {{ range .Site.Menus.main }}
+    <a{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} id="you-are-here"{{end}} href="{{ .URL }}" title="{{ .Title }}">{{ .Name }}</a>
+    {{ end }}
+</nav>
+
+
+
+<div id="main-container">

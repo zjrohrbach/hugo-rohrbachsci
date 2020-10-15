@@ -1,0 +1,209 @@
+$link-color: blue;
+$hover-link-color: #469646;
+$main-bg-color: white;
+$behind-bg-color: #d8f3f5;
+$title-color: red;
+$navlink-color: #469646;
+$navlink-txt-color: white;
+$navlink-selected-color: white;
+$navlink-selected-txt-color: black;
+$hover-navlink-color: #a6b7a6;
+$main-container-padding: 30px;
+$code-block-color: #eee;
+
+$tablet-width: 768px;
+$desktop-width: 1024px;
+
+@mixin desktop {
+	@media only screen and (min-width: #{$desktop-width}) {
+		@content
+	}
+}
+
+@mixin tablet {
+	  @media only screen and (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+		    @content
+	  }
+}
+
+body {
+    background-color: $behind-bg-color;
+    background-image: url("graph-paper.svg");
+}
+
+* {
+    font-family: Times;
+    font-size: 16px;
+}
+a {
+    color: $link-color;
+    text-decoration: none;
+    font-weight: bold;
+
+    &:hover {
+    	color: $hover-link-color;
+      font-style: italic;
+      text-decoration: underline;
+    }
+}
+#main-container {
+    background-color: $main-bg-color;
+    padding: #{$main-container-padding};
+    border-style: solid solid solid groove;
+    border-width: 2px 1px 1px 4px;
+
+    @include desktop {
+        width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    @include tablet {
+        width: #{$tablet-width - 2 * $main-container-padding};
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+#website-name {
+    color: $title-color;
+    font-weight: bold;
+    font-size: 36px;
+    text-decoration: none;
+
+    &:hover {font-style: normal}
+}
+nav {
+    padding-bottom: 2px;
+
+    @include desktop {
+        width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 20px;
+    }
+    @include tablet {
+        width: #{$tablet-width - 2 * $main-container-padding};
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+	a {
+      font-weight: normal;
+	    background-color: $navlink-color;
+      color: $navlink-txt-color;
+	    text-align: center;
+	    margin-top: 2px;
+	    padding-top: 2px;
+	    padding-bottom: 2px;
+      border-width: 2px;
+	    display: inline-block;
+      height: 17px;
+      border-style: solid;
+      width: 220px;
+      border-color: black;
+
+	    &:hover {
+		    background-color: $hover-navlink-color;
+	    }
+
+      @include desktop {
+          width: 150px;
+          border-style: outset groove solid groove;
+          border-width: 5px 5px 1px 5px;
+      }
+      @include tablet {
+      }
+
+	}
+}
+
+#you-are-here {
+    background-color: $navlink-selected-color;
+    color: $navlink-selected-txt-color;
+    @include desktop { border-bottom-width: 0px; }
+}
+
+#contact {
+    text-align: left;
+    float: right;
+    background-color: brown;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: bold;
+}
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+h3 {
+    font-size: 20px;
+    font-weight: bold;
+}
+code {
+    font-family: monospace;
+    background-color: $code-block-color;
+    border: 1px solid;
+}
+
+#list-container {
+
+    text-align: center;
+
+    a {
+        color: black;
+        text-decoration: none;
+        font-weight: normal;
+        font-style: normal;
+        background-color: white;
+        display: inline-block;
+        vertical-align: top;
+        width: 400px;
+        height: 200px;
+        margin: 5px;
+        padding: 10px;
+        overflow: hidden;
+        text-align: left;
+        background-image: linear-gradient(to bottom, transparent, $behind-bg-color);
+        border-style: solid;
+        border-radius: 10px;
+
+        &:hover {
+            background-color: $hover-navlink-color;
+        }
+
+        h1 {
+            font-size: 20px;
+            font-weight: bold;
+            padding: 0px;
+            margin: 0px;
+            overflow: hidden;
+
+            &:hover {
+            color: $hover-link-color;
+              font-style: italic;
+              text-decoration: underline;
+            }
+        }
+
+        h2 {
+            font-size: 10px;
+        }
+
+        h3 {
+            font-size: 9px;
+        }
+
+        p {
+
+        }
+    }
+}
+
+#page-subtitle {
+    font-size: 18px;
+}
+
+.article-tags {
+    font-size: 12px;
+}
