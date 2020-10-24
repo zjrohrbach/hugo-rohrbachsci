@@ -1,10 +1,10 @@
 {{ partial "header.html" . }}
 
-<h1 id="page_title">{{ .Title }}</h1>
+<a href="#"><h1 id="section-title">{{ .Title }}</h1></a>
 
 {{- .Content -}}
 
-<div id="list-container">
+<div class="list-container">
 {{ range .Pages }}
     <a href="{{ .Permalink }}">
         <h1>{{ .Title }}</h1>

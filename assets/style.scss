@@ -3,13 +3,17 @@ $hover-link-color: #469646;
 $main-bg-color: white;
 $behind-bg-color: #d8f3f5;
 $title-color: red;
-$navlink-color: #469646;
-$navlink-txt-color: white;
-$navlink-selected-color: white;
-$navlink-selected-txt-color: black;
+$navlink-color: white;
+$navlink-txt-color: black;
+$navlink-selected-color: #469646;
+$navlink-selected-txt-color: white;
 $hover-navlink-color: #a6b7a6;
 $main-container-padding: 30px;
 $code-block-color: #eee;
+$accent-color: brown;
+$accent-text-color: white;
+$border-rad: 10px;
+$list-height: 200px;
 
 $tablet-width: 768px;
 $desktop-width: 1024px;
@@ -48,9 +52,16 @@ a {
 }
 #main-container {
     background-color: $main-bg-color;
-    padding: #{$main-container-padding};
-    border-style: solid solid solid groove;
-    border-width: 2px 1px 1px 4px;
+    padding-left: #{$main-container-padding};
+    padding-right: #{$main-container-padding};
+    padding-bottom: #{$main-container-padding};
+    padding-top: 0px;
+    border-style: solid;
+    border-width: 15px 10px 10px 10px;
+    border-color: $navlink-selected-color;
+    border-radius: $border-rad;
+    position: relative;
+    z-index: 2;
 
     @include desktop {
         width: 1000px;
@@ -73,12 +84,14 @@ a {
 }
 nav {
     padding-bottom: 2px;
+    position: relative;
+    z-index: 1;
 
     @include desktop {
         width: 1000px;
         margin-left: auto;
         margin-right: auto;
-        height: 20px;
+        height: 25px;
     }
     @include tablet {
         width: #{$tablet-width - 2 * $main-container-padding};
@@ -87,19 +100,19 @@ nav {
     }
 
 	a {
-      font-weight: normal;
+        font-weight: normal;
 	    background-color: $navlink-color;
-      color: $navlink-txt-color;
+        color: $navlink-txt-color;
 	    text-align: center;
 	    margin-top: 2px;
 	    padding-top: 2px;
-	    padding-bottom: 2px;
-      border-width: 2px;
+	    padding-bottom: 5px;
+        border-width: 2px;
 	    display: inline-block;
-      height: 17px;
-      border-style: solid;
-      width: 220px;
-      border-color: black;
+        height: 17px;
+        border-style: solid;
+        width: 220px;
+        border-color: black;
 
 	    &:hover {
 		    background-color: $hover-navlink-color;
@@ -108,7 +121,7 @@ nav {
       @include desktop {
           width: 150px;
           border-style: outset groove solid groove;
-          border-width: 5px 5px 1px 5px;
+          border-width: 5px 5px 0px 5px;
       }
       @include tablet {
       }
@@ -119,14 +132,11 @@ nav {
 #you-are-here {
     background-color: $navlink-selected-color;
     color: $navlink-selected-txt-color;
+    border-color: $navlink-selected-color;
+    font-weight: bold;
     @include desktop { border-bottom-width: 0px; }
 }
 
-#contact {
-    text-align: left;
-    float: right;
-    background-color: brown;
-}
 
 h1 {
     font-size: 28px;
@@ -146,7 +156,7 @@ code {
     border: 1px solid;
 }
 
-#list-container {
+.list-container {
 
     text-align: center;
 
@@ -158,8 +168,8 @@ code {
         background-color: white;
         display: inline-block;
         vertical-align: top;
-        width: 400px;
-        height: 200px;
+        width: 80%;
+        height: #{$list-height};
         margin: 5px;
         padding: 10px;
         overflow: hidden;
@@ -167,22 +177,41 @@ code {
         background-image: linear-gradient(to bottom, transparent, $behind-bg-color);
         border-style: solid;
         border-radius: 10px;
+        position: relative;
+        white-space: normal;
+
+        @include tablet {
+            width: 300px;
+        }
+        @include desktop {
+            width: 400px;
+        }
+
 
         &:hover {
             background-color: $hover-navlink-color;
+            height: auto;
+            min-height: #{$list-height};
+            ;
         }
 
         h1 {
             font-size: 20px;
             font-weight: bold;
-            padding: 0px;
+            padding: 5px;
             margin: 0px;
             overflow: hidden;
+            background-color: $accent-color;
+            color: $accent-text-color;
+            margin: -10px -10px 0px -10px;
+            text-overflow: ellipsis;
+            overflow-x: hidden;
+            white-space: nowrap;
 
             &:hover {
-            color: $hover-link-color;
               font-style: italic;
               text-decoration: underline;
+              white-space: normal;
             }
         }
 
@@ -200,10 +229,111 @@ code {
     }
 }
 
+#section-title{
+    background-color: $navlink-selected-color;
+    color: $navlink-selected-txt-color;
+    margin-left: -#{$main-container-padding};
+    margin-right: -#{$main-container-padding};
+    margin-top: 0px;
+    padding-left: #{$main-container-padding/2};
+    font-size: 35px;
+}
+
+#article-title{
+
+
+    h1 {
+
+        font-size: 30px;     
+    }
+    
+}
+
+#article-container {
+    background-color: white;
+}
+
 #page-subtitle {
-    font-size: 18px;
+    font-size: 15px;
 }
 
 .article-tags {
     font-size: 12px;
+}
+
+div.mini-section-title {
+    background-color: $navlink-selected-color;
+    color: $navlink-selected-txt-color;
+    font-style: italic;
+    position: absolute;
+    text-align: center;
+    bottom: -10px;
+    right: 0px;
+    border-radius: 5px;
+    padding: 0px 15px;
+    margin: -10px -10px 10px -10px;
+    width: 100%;
+
+    @include desktop { 
+        width: auto;
+        text-align: right;
+    }
+    @include tablet { 
+        width: auto;
+        text-align: right;
+    }
+}
+
+#social-follow {
+    float: right;
+
+    svg {
+        fill: $title-color;
+    }
+}
+
+#index-aside {
+    width: 200px;
+    padding: 10px;
+    overflow: scroll;
+    float: right;
+}
+
+
+
+.index-special {
+    white-space: nowrap;
+    overflow: scroll;
+    background: $behind-bg-color;
+    padding: 30px;
+
+    @include desktop {
+        a {
+            width: 200px;
+            max-height: #{$list-height};
+        }
+    }
+
+    .spacer {
+        width: 20px;
+        display: inline-block;
+    }
+}
+
+div.fade-block{
+    height: #{$list-height+95px};
+    width: 100px;
+    position: absolute;
+    z-index: 10;
+    bottom: #{$main-container-padding};
+}
+
+.right {
+    background-image: linear-gradient(to right, transparent 60%, $behind-bg-color 90%);
+    right: #{$main-container-padding};
+}
+
+.left {
+    background-image: linear-gradient(to left, transparent 60%, $behind-bg-color 90%);
+    left: #{$main-container-padding};
 }

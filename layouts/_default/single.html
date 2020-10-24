@@ -1,14 +1,18 @@
 {{ partial "header.html" . }}
 
-<h1 id="page-title"> {{ .Title }} </h1>
-<h2 id="page-subtitle">{{ .PublishDate.Format "Jan 02, 2006" }}</h2>
+<a href="/{{ .Section }}"><h1 id="section-title">{{ with .Site.GetPage .Section }}{{ .Title }}{{ end }}</h1></a>   
+
+<div id="article-title">
+<h1> {{ .Title }} </h1>
+<div id="article-container"> 
+<h2 id="article-subtitle">{{ .PublishDate.Format "Jan 02, 2006" }}</h2>
 <div class="article-tags">
     {{ range .Params.tags }} 
     (<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="article-tags">{{- . -}}</a>)
     {{end}}
 </div>
-<div id="article-container"> 
 {{ .Content }} 
+</div>
 </div>
 
 {{ partial "footer.html" . }}

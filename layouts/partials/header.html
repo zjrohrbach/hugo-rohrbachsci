@@ -11,13 +11,19 @@
 
 <body>
 
+
 <a id="website-name" href="/">Rohrbach Science</a>
+
+<div id="social-follow">
+     {{ partial "social-follow.html" . }}
+</div>
 
 <nav class="sidebar-nav">
     {{ $currentPage := . }}
     <a{{if eq .URL "/" }} id="you-are-here"{{end}} href="/">Home</a>
     {{ range .Site.Menus.main }}
-    <a{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} id="you-are-here"{{end}} href="{{ .URL }}" title="{{ .Title }}">{{ .Name }}</a>
+    <a{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} id="you-are-here"{{end}} 
+    href="{{ .URL }}" title="{{ .Title }}">{{ .Name }}</a>
     {{ end }}
 </nav>
 

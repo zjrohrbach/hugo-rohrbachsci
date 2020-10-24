@@ -1,0 +1,68 @@
+<!-- This set of follow icons is taken from the ANANKE theme https://github.com/theNewDynamic/gohugo-theme-ananke -->
+{{ $icon_size := "32px" }}
+{{ with .Param "stackoverflow" }}
+<a href="{{ . }}" target="_blank">
+  {{ partial "svg/stackoverflow.svg" (dict "size" $icon_size) }}
+</a>
+{{ end }}
+{{ with .Param "facebook" }}
+<a href="{{ . }}" target="_blank">
+  {{ partial "svg/facebook.svg" (dict "size" $icon_size) }}
+</a>
+{{ end }}
+{{ with .Param "twitter" }}
+<a href="{{ . }}" target="_blank">
+  {{ partial "svg/twitter.svg" (dict "size" $icon_size) }}
+</a>
+{{ end }}
+{{ with .Param "instagram" }}
+<a href="{{ . }}" target="_blank">
+  {{ partial "svg/instagram.svg" (dict "size" $icon_size) }}
+</a>
+{{ end }}
+{{ with .Param "youtube" }}
+<a href="{{ . }}" target="_blank">
+  {{ partial "svg/youtube.svg" (dict "size" $icon_size) }}
+</a>
+{{ end }}
+{{ with .Param "linkedin" }}
+<a href="{{ . }}" target="_blank">
+  {{ partial "svg/linkedin.svg" (dict "size" $icon_size) }}
+</a>
+{{ end }}
+{{ with .Param "github" }}
+<a href="{{ . }}" target="_blank">
+  {{ partial "svg/github.svg" (dict "size" $icon_size) }}
+</a>
+{{ end }}
+{{ with .Param "gitlab" }}
+<a href="{{ . }}" target="_blank">
+  {{ partial "svg/gitlab.svg" (dict "size" $icon_size) }}
+</a>
+{{ end }}
+{{ with .Param "keybase" }}
+<a href="{{ . }}" target="_blank">
+  {{ partial "svg/keybase.svg" (dict "size" $icon_size) }}
+</a>
+{{ end }}
+{{ with .Param "medium" }}
+<a href="{{ . }}" target="_blank">
+  {{ partial "svg/medium.svg" (dict "size" $icon_size) }}
+</a>
+{{ end }}
+{{ with .Param "mastodon" }}
+<a href="{{ . }}" target="_blank">
+  {{ partial "svg/mastodon.svg" (dict "size" $icon_size) }}
+</a>
+{{ end }}
+{{ with .Param "slack" }}
+<a href="{{ . }}" target="_blank">
+  {{ partial "svg/slack.svg" (dict "size" $icon_size) }}
+</a>
+{{ end }}
+{{ with .Param "rss" }}
+<a href="{{ . }}" target="_blank">
+  {{ partial "svg/rss.svg" (dict "size" $icon_size) }}
+</a>
+{{ end }}
+<!-- End of icon help from ANANKE theme -->
