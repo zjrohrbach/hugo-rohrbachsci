@@ -1,4 +1,4 @@
-{{ partial "header.html" . }}
+{{ define "main-content" }}
 
 <a href="#"><h1 id="section-title">{{ .Title }}</h1></a>
 
@@ -23,4 +23,4 @@
     <div class="fade-block left"></div>
 </div>
 
-{{ partial "footer.html" . }}
+{{ end }}

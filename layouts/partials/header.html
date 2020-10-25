@@ -7,6 +7,7 @@
     {{ .Hugo.Generator }}
     {{ $styles := resources.Get "style.scss" | toCSS }}
     <link rel="stylesheet" href="{{ $styles.Permalink }}">
+    {{ block "extra-head-matter" . }}{{ end }}
 </head>
 
 <body>

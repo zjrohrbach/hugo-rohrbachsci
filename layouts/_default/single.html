@@ -1,4 +1,4 @@
-{{ partial "header.html" . }}
+{{ define "main-content" }}
 
 <a href="/{{ .Section }}"><h1 id="section-title">{{ with .Site.GetPage .Section }}{{ .Title }}{{ end }}</h1></a>   
 
@@ -15,4 +15,4 @@
 </div>
 </div>
 
-{{ partial "footer.html" . }}
+{{ end }}
