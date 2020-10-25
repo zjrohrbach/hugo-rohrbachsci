@@ -303,11 +303,8 @@ div.mini-section-title {
     background: $behind-bg-color;
     padding: 30px;
 
-    @include desktop {
-        a {
-            width: 200px;
-            max-height: #{$list-height};
-        }
+    a {
+        max-height: #{$list-height};
     }
 
     .spacer {
