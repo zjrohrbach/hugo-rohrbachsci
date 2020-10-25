@@ -290,10 +290,17 @@ div.mini-section-title {
 
 
 .index-special {
-    white-space: nowrap;
-    overflow: scroll;
     background: $behind-bg-color;
     padding: 30px;
+
+    @include desktop {
+        white-space: nowrap;
+        overflow: scroll;
+    }
+    @include tablet {
+        white-space: nowrap;
+        overflow: scroll;
+    }
 
     a {
         max-height: #{$list-height};
