@@ -1,0 +1,10 @@
+{{ $image := .Page.Resources.GetMatch (.Get "src") }}
+{{ .Scratch.Set "image_link" $image.RelPermalink }}
+{{ if .Get "resize" }}
+    {{ $image := $image.Resize (.Get "resize") }}
+    {{ .Scratch.Set "image_link" $image.RelPermalink }}
+{{end}}
+<img src="{{ .Scratch.Get "image_link" }}"{{ with .Get "alt" }}
+    alt="{{ . }}"{{end}}{{ with .Get "class" }}
+    class="{{ . }}"{{end}}{{ with .Get "style" }}
+    style="{{ . }}"{{end}} />
