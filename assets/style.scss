@@ -62,6 +62,7 @@ a {
     border-radius: $border-rad;
     position: relative;
     z-index: 2;
+    overflow: auto;
 
     @include desktop {
         width: 1000px;
@@ -223,6 +224,17 @@ code {
 
         h3 {
             font-size: 9px;
+        }
+    }
+
+    a.title-only {
+        width: 80%;
+        max-height: 12px;
+
+        &:hover {
+            min-height: 12px;
+            max-height: #{$list-height};
+            height: auto;
         }
     }
 }
