@@ -18,6 +18,7 @@ $list-height: 200px;
 $tablet-width: 768px;
 $desktop-width: 1024px;
 
+
 @mixin desktop {
 	@media only screen and (min-width: #{$desktop-width}) {
 		@content
@@ -36,9 +37,13 @@ body {
 }
 
 * {
-    font-family: Times;
-    font-size: 16px;
+    font-family: Helvetica, sans-serif;
 }
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: Verdana, serif;
+}
+
 a {
     color: $link-color;
     text-decoration: none;
@@ -63,6 +68,8 @@ a {
     position: relative;
     z-index: 2;
     overflow: auto;
+
+    img { max-width: 100%; }
 
     @include desktop {
         width: 1000px;
@@ -90,6 +97,7 @@ a {
     font-weight: bold;
     font-size: 36px;
     text-decoration: none;
+    font-family: Helvetica;
 
     &:hover {font-style: normal}
 }
@@ -123,14 +131,15 @@ nav {
         height: 17px;
         border-style: solid;
         width: 220px;
-        border-color: black;
+        border-color: rgb(153, 155, 151);
+        font-family: Helvetica, sans-serif;
 
 	    &:hover {
 		    background-color: $hover-navlink-color;
 	    }
 
       @include desktop {
-          width: 150px;
+          width: 180px;
           border-style: outset groove solid groove;
           border-width: 5px 5px 0px 5px;
       }
@@ -162,8 +171,9 @@ h3 {
     font-weight: bold;
 }
 code {
-    font-family: monospace;
+    font-family: "Courier New", monospace;
     background-color: $code-block-color;
+    padding: 0px 5px;
     border: 1px solid;
 }
 
