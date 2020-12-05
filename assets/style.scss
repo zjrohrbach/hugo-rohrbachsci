@@ -69,7 +69,15 @@ a {
         margin-left: auto;
         margin-right: auto;
 
-        img {float: right;}
+        img {
+            float: right;
+        }
+
+         img.il {
+            float: none;
+            display: block;
+            margin: auto;
+        }
     }
     @include tablet {
         width: #{$tablet-width - 2 * $main-container-padding};
