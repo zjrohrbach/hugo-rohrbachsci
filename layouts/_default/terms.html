@@ -4,6 +4,8 @@
 
 {{- .Content -}}
 
-{{ partial "article_list.html" . }}
+{{ range .Pages }}
+    <h2 class="tag-header">/<a href="{{ .Permalink }}">{{ .Title }}</a>/</h2>
+{{ end }}
 
 {{ end }}

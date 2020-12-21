@@ -1,0 +1,12 @@
+{{ define "main-content" }}
+
+<a href="../"><h1 id="section-title">{{ with .Site.GetPage .Section }}{{ .Title }}{{ end }}</h1></a>
+
+<h1 class="tag-header">/{{ .Title }}/</h1>
+
+{{- .Content -}}
+
+{{ partial "article_list.html" . }}
+
+
+{{ end }}
