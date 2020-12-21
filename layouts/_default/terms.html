@@ -4,8 +4,10 @@
 
 {{- .Content -}}
 
-{{ range .Pages }}
-    <h2 class="tag-header">/<a href="{{ .Permalink }}">{{ .Title }}</a>/</h2>
-{{ end }}
+<div class="tag-container master-tag-list">
+    {{ range .Pages }}
+        <div class="ind-tag"><a href="{{ .Permalink }}">{{ .Title }}</a></div>
+    {{ end }}
+</div>
 
 {{ end }}

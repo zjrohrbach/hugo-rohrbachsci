@@ -14,9 +14,10 @@ $accent-color: brown;
 $accent-text-color: white;
 $border-rad: 10px;
 $list-height: 200px;
+$main-container-size: 900px;
 
 $tablet-width: 768px;
-$desktop-width: 1024px;
+$desktop-width: 950px;
 
 
 @mixin desktop {
@@ -72,7 +73,7 @@ a {
     img { max-width: 100%; }
 
     @include desktop {
-        width: 1000px;
+        width: $main-container-size;
         margin-left: auto;
         margin-right: auto;
 
@@ -107,7 +108,7 @@ nav {
     z-index: 1;
 
     @include desktop {
-        width: 1000px;
+        width: $main-container-size;
         margin-left: auto;
         margin-right: auto;
         height: 25px;
@@ -285,22 +286,43 @@ code {
     font-size: 15px;
 }
 
-.article-tags {
+.tag-container {
+    padding: 5px;
     font-size: 12px;
-    a {
-        background-color: $behind-bg-color;
-        padding: 5px;
-        border-style: solid;
-        border-width: 2px;
-        border-radius: $border-rad;
+    .ind-tag:hover {
+        border-color: $hover-link-color;
     }
 }
 
-.tag-header {
-    width: 300px;
-    display: inline-block;
-    background-color: $accent-color;
+.master-tag-list {
+    font-size: 18px;
+    text-align: center;
+    margin: auto;
+
+    @include desktop {
+        width: 50%;
+    }
+
+    @include tablet {
+        width: 50%;
+    }
+
+    .ind-tag {
+        margin: 5px;
+    }
 }
+
+.ind-tag {
+    background-color: $behind-bg-color;
+    padding: 3px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: $link-color;
+    border-radius: $border-rad;
+    display: inline-block;
+    color: $link-color;
+}
+
 
 
 div.mini-section-title {
