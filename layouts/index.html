@@ -13,7 +13,7 @@
         <a href="{{ .Permalink }}">
             <h1>{{ .Title }}</h1>
             <h2>{{ .PublishDate.Format "Jan 02, 2006" }}</h2>
-            <h3>{{ range .Params.tags }} ({{- . -}}) {{end}}</h3>
+            <h3>{{ range .Params.tags }} <div class="ind-tag">{{- . -}}</div> {{end}}</h3>
             <p>{{ .Description }}</p>
             <div class="mini-section-title">{{ with .Site.GetPage .Section }}{{ .Title }}{{ end }}</div>
         </a>
