@@ -2,8 +2,6 @@
 
 <a href="#"><h1 id="section-title">{{ .Title }}</h1></a>
 
-{{- .Content -}}
-
 <h1>Recent Posts</h1>
 <div class="list-container index-special">
     {{ $n_posts := $.Param "recent_posts_number" | default 5 }}
@@ -22,5 +20,8 @@
     <div class="fade-block right"></div>
     <div class="fade-block left"></div>
 </div>
+
+
+{{- .Content -}}
 
 {{ end }}
