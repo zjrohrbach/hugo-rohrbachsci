@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ .Title }} - {{ .Site.Title }}</title>
-    {{ .Hugo.Generator }}
+    {{ hugo.Generator }}
     {{ $styles := resources.Get "style.scss" | toCSS }}
     <link rel="stylesheet" href="{{ $styles.Permalink }}">
     {{ with .Param "website-defined-css" }}<link rel="stylesheet" href="{{ . }}">{{ end }}
@@ -23,7 +23,7 @@
 
 <nav class="sidebar-nav">
     {{ $currentPage := . }}
-    <a{{if eq .URL "/" }} id="you-are-here"{{end}} href="/">Home</a>
+    <a{{if eq .RelPermalink "/" }} id="you-are-here"{{end}} href="/">Home</a>
     {{ range .Site.Menus.main }}
     <a{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} id="you-are-here"{{end}} 
     href="{{ .URL }}" title="{{ .Title }}">{{ .Name }}</a>
