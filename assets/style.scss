@@ -1,3 +1,9 @@
+//==================================//
+//                                  //
+//        THEME PARAMETERS          //
+//                                  //
+//==================================//
+
 $link-color: blue;
 $hover-link-color: #469646;
 $main-bg-color: white;
@@ -16,8 +22,17 @@ $border-rad: 10px;
 $list-height: 200px;
 $main-container-size: 900px;
 
+$heading-fonts: Verdana, serif;
+$paragraph-fonts: Helvetica, sans-serif;
+
 $tablet-width: 768px;
 $desktop-width: 950px;
+
+//==================================//
+//                                  //
+//      MEDIA-SIZE DEFINITIONS      //
+//                                  //
+//==================================//
 
 
 @mixin desktop {
@@ -32,17 +47,23 @@ $desktop-width: 950px;
 	  }
 }
 
+//==================================//
+//                                  //
+//        BASIC CANVAS SETUP        //
+//                                  //
+//==================================//
+
 body {
     background-color: $behind-bg-color;
     background-image: url("graph-paper.svg");
 }
 
 * {
-    font-family: Helvetica, sans-serif;
+    font-family: $paragraph-fonts;
 }
 
 h1,h2,h3,h4,h5,h6 {
-    font-family: Verdana, serif;
+    font-family: $heading-fonts;
 }
 
 a {
@@ -56,6 +77,7 @@ a {
       text-decoration: underline;
     }
 }
+
 #main-container {
     background-color: $main-bg-color;
     padding-left: #{$main-container-padding};
@@ -93,6 +115,7 @@ a {
         margin-right: auto;
     }
 }
+
 #website-name {
     color: $title-color;
     font-weight: bold;
@@ -102,6 +125,22 @@ a {
 
     &:hover {font-style: normal}
 }
+
+#social-follow {
+    float: right;
+
+    svg {
+        fill: $title-color;
+    }
+}
+
+//==================================//
+//                                  //
+//          NAV MENU TABS           //
+//                                  //
+//==================================//
+
+
 nav {
     padding-bottom: 2px;
     position: relative;
@@ -133,7 +172,7 @@ nav {
         border-style: solid;
         width: 220px;
         border-color: rgb(153, 155, 151);
-        font-family: Helvetica, sans-serif;
+        font-family: $paragraph-fonts;
 
 	    &:hover {
 		    background-color: $hover-navlink-color;
@@ -158,6 +197,12 @@ nav {
     @include desktop { border-bottom-width: 0px; }
 }
 
+//==================================//
+//                                  //
+//       ARTICLE-LEVEL STYLE        //
+//                                  //
+//==================================//
+
 
 h1 {
     font-size: 28px;
@@ -171,12 +216,92 @@ h3 {
     font-size: 20px;
     font-weight: bold;
 }
+
 code {
     font-family: "Courier New", monospace;
     background-color: $code-block-color;
     padding: 0px 5px;
     border: 1px solid;
 }
+
+#section-title{
+    background-color: $navlink-selected-color;
+    color: $navlink-selected-txt-color;
+    margin-left: -#{$main-container-padding};
+    margin-right: -#{$main-container-padding};
+    margin-top: 0px;
+    padding-left: #{$main-container-padding/2};
+    font-size: 35px;
+}
+
+#article-title{
+
+
+    h1 {
+
+        font-size: 30px;     
+    }
+    
+}
+
+#article-container {
+    background-color: white;
+}
+
+#page-subtitle {
+    font-size: 15px;
+}
+
+//==================================//
+//                                  //
+//        DEALING WITH TAGS         //
+//                                  //
+//==================================//
+
+//the tag container is on an individual page
+//tag containers in article lists are contained within <h3>'s
+.tag-container {
+    padding: 5px;
+    font-size: 12px;
+    .ind-tag:hover {
+        border-color: $hover-link-color;
+    }
+}
+
+.master-tag-list {
+    font-size: 18px;
+    text-align: center;
+    margin: auto;
+
+    @include desktop {
+        width: 50%;
+    }
+
+    @include tablet {
+        width: 50%;
+    }
+
+    .ind-tag {
+        margin: 5px;
+    }
+}
+
+.ind-tag {
+    background-color: $behind-bg-color;
+    padding: 3px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: $link-color;
+    border-radius: $border-rad;
+    display: inline-block;
+    color: $link-color;
+}
+
+//==================================//
+//                                  //
+//         LIST OF ARTICLES         //
+//                                  //
+//==================================//
 
 .list-container {
 
@@ -258,73 +383,8 @@ code {
     }
 }
 
-#section-title{
-    background-color: $navlink-selected-color;
-    color: $navlink-selected-txt-color;
-    margin-left: -#{$main-container-padding};
-    margin-right: -#{$main-container-padding};
-    margin-top: 0px;
-    padding-left: #{$main-container-padding/2};
-    font-size: 35px;
-}
-
-#article-title{
-
-
-    h1 {
-
-        font-size: 30px;     
-    }
-    
-}
-
-#article-container {
-    background-color: white;
-}
-
-#page-subtitle {
-    font-size: 15px;
-}
-
-.tag-container {
-    padding: 5px;
-    font-size: 12px;
-    .ind-tag:hover {
-        border-color: $hover-link-color;
-    }
-}
-
-.master-tag-list {
-    font-size: 18px;
-    text-align: center;
-    margin: auto;
-
-    @include desktop {
-        width: 50%;
-    }
-
-    @include tablet {
-        width: 50%;
-    }
-
-    .ind-tag {
-        margin: 5px;
-    }
-}
-
-.ind-tag {
-    background-color: $behind-bg-color;
-    padding: 3px;
-    border-style: solid;
-    border-width: 2px;
-    border-color: $link-color;
-    border-radius: $border-rad;
-    display: inline-block;
-    color: $link-color;
-}
-
-
-
+// this places a section-title inside of the <a> for
+// an individual article
 div.mini-section-title {
     background-color: $navlink-selected-color;
     color: $navlink-selected-txt-color;
@@ -348,13 +408,13 @@ div.mini-section-title {
     }
 }
 
-#social-follow {
-    float: right;
 
-    svg {
-        fill: $title-color;
-    }
-}
+
+//==================================//
+//                                  //
+//    ADJUSTMENTS FOR SITE INDEX    //
+//                                  //
+//==================================//
 
 
 .index-special {
@@ -398,25 +458,3 @@ div.fade-block{
     background-image: linear-gradient(to left, transparent 60%, $behind-bg-color 90%);
     left: #{$main-container-padding};
 }
-
-/*
-THIS IS AN ABANDONED ATTEMPT TO USE ::after & ::before insteda of fade-blocks
-.index-special::after {
-    //background-image: linear-gradient(to right, transparent 60%, $behind-bg-color 90%);
-    background-color: black;
-    height: #{$list-height+105px};
-    width: 200px;
-    position: sticky;
-    display: block;
-    z-index: 10;
-    top: 0px;
-    right: 0px;
-    //bottom: #{$main-container-padding};
-    //right: #{$main-container-padding};
-    content: '';
-}
-
-.left {
-    background-image: linear-gradient(to left, transparent 60%, $behind-bg-color 90%);
-    left: #{$main-container-padding};
-}*/
