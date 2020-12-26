@@ -1,3 +1,8 @@
+{{ $show_section_title := true }}
+{{ if .IsSection }}
+    {{ $show_section_title = false }}
+{{ end }}
+
 <div class="list-container">
 {{ range .Pages }}
     <a href="{{ .Permalink }}">
@@ -5,6 +10,11 @@
         <h2>{{ .PublishDate.Format "Jan 02, 2006" }}</h2>
         <h3>{{ range .Params.tags }} <div class="ind-tag">{{- . -}}</div> {{end}}</h3>
         <p>{{ .Description }}</p>
+        {{ if $show_section_title }}
+            <div class="mini-section-title">
+                {{- with .Site.GetPage .Section -}}{{- .Title -}}{{- end -}}
+            </div>
+        {{ end }}
     </a>
 {{ end }}
 </div>
