@@ -4,10 +4,6 @@
 
 {{- .Content -}}
 
-<div class="tag-container master-tag-list">
-    {{ range .Pages }}
-        <div class="ind-tag"><a href="{{ .Permalink }}">{{ .Title }}</a></div>
-    {{ end }}
-</div>
+{{ partial "taxonomy-term-bubble-list.html" . }}
 
 {{ end }}
