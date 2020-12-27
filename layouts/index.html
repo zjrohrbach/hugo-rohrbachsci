@@ -3,23 +3,8 @@
 <a href="#"><h1 id="section-title">{{ .Title }}</h1></a>
 
 <h1>Recent Posts</h1>
-<div class="list-container index-special">
-    {{ $n_posts := $.Param "recent_posts_number" | default 5 }}
-    {{/* Range through the first $n_posts items of the section */}}
-    {{/* Thanks to Ananke theme for helping me figure out how to do this*/}}    
-    {{ range (first $n_posts .Site.RegularPages) }}
-        <a href="{{ .Permalink }}">
-            <h1>{{ .Title }}</h1>
-            <h2>{{ .PublishDate.Format "Jan 02, 2006" }}</h2>
-            <h3>{{ range .Params.tags }} <div class="ind-tag">{{- . -}}</div> {{end}}</h3>
-            <p>{{ .Description }}</p>
-            <div class="mini-section-title">{{ with .Site.GetPage .Section }}{{ .Title }}{{ end }}</div>
-        </a>
-    {{ end }}
-    <div class="spacer"></div>
-    <div class="fade-block right"></div>
-    <div class="fade-block left"></div>
-</div>
+
+{{ partial "article-list-index-special.html" . }}
 
 
 {{- .Content -}}

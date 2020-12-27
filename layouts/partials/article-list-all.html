@@ -1,0 +1,10 @@
+{{ $showMiniSection := true }}
+{{ if .IsSection }}
+    {{ $showMiniSection = false }}
+{{ end }}
+
+<div class="list-container">
+{{ range .Pages }}
+    {{ partial "article-ind-link.html" (dict "showMiniSection" $showMiniSection "thisPage" . "siteInfo" .Site ) }}
+{{ end }}
+</div>

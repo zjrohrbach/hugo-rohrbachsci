@@ -1,0 +1,16 @@
+{{/* USAGE: {{ partial "article-ind-link.html" (dict "showMiniSection" [true|false] "thisPage" . "siteInfo" .Site ) }} */}}
+<a href="{{ .thisPage.Permalink }}">
+    <h1>{{ .thisPage.Title }}</h1>
+    <h2>{{ .thisPage.PublishDate.Format "Jan 02, 2006" }}</h2>
+    <h3>{{ range .thisPage.Params.tags }} <div class="ind-tag">{{- . -}}</div> {{end}}</h3>
+    <p>{{ .thisPage.Description }}</p>
+    {{ $sectionTitle := .thisPage.Section }}
+    {{ with .siteInfo.GetPage $sectionTitle }}
+        {{ $sectionTitle = .Title }}
+    {{ end }}
+    {{ if .showMiniSection }}
+        <div class="mini-section-title">
+            {{ $sectionTitle }}
+        </div>
+    {{ end }}
+</a>
