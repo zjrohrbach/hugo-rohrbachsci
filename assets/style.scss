@@ -58,8 +58,8 @@ body {
     background-image: url("graph-paper.svg");
 }
 
-* {
-    font-family: $paragraph-fonts;
+p {
+    font-family: $paragraph-fonts; 
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -315,7 +315,7 @@ code {
         background-color: white;
         display: inline-block;
         vertical-align: top;
-        width: 80%;
+        width: 85%;
         height: #{$list-height};
         margin: 5px;
         padding: 10px;
@@ -351,14 +351,24 @@ code {
             background-color: $accent-color;
             color: $accent-text-color;
             margin: -10px -10px 0px -10px;
-            text-overflow: ellipsis;
-            overflow-x: hidden;
-            white-space: nowrap;
+            max-height: 95px;
+
+            @include desktop { 
+                text-overflow: ellipsis;
+                overflow-x: hidden;
+                white-space: nowrap;
+            }
+            @include tablet { 
+                text-overflow: ellipsis;
+                overflow-x: hidden;
+                white-space: nowrap;
+            }    
 
             &:hover {
               font-style: italic;
               text-decoration: underline;
               white-space: normal;
+              max-height: 100%;
             }
         }
 
@@ -419,15 +429,17 @@ div.mini-section-title {
 
 .index-special {
     background: $behind-bg-color;
-    padding: 30px;
+    padding: 10px;
 
     @include desktop {
         white-space: nowrap;
         overflow: scroll;
+        padding: 30px;
     }
     @include tablet {
         white-space: nowrap;
         overflow: scroll;
+        padding: 30px;
     }
 
     a {
@@ -441,12 +453,15 @@ div.mini-section-title {
 }
 
 div.fade-block{
+    display: none;
     height: #{$list-height+95px};
     width: 100px;
     position: absolute;
     z-index: 10;
     top: #{$main-container-padding+95px};
 
+    @include desktop { display: block; }
+    @include tablet { display: block; }
 }
 
 .right {
