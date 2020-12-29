@@ -19,7 +19,7 @@ $code-block-color: #eee;
 $accent-color: brown;
 $accent-text-color: white;
 $border-rad: 10px;
-$list-height: 200px;
+$list-height: 230px;
 $main-container-size: 900px;
 
 $heading-fonts: Verdana, serif;
@@ -45,6 +45,12 @@ $desktop-width: 950px;
 	  @media only screen and (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
 		    @content
 	  }
+}
+
+@mixin notmobile {
+	@media only screen and (min-width: #{$tablet-width}) {
+		@content
+	}
 }
 
 //==================================//
@@ -183,8 +189,6 @@ nav {
           border-style: outset groove solid groove;
           border-width: 5px 5px 0px 5px;
       }
-      @include tablet {
-      }
 
 	}
 }
@@ -263,9 +267,10 @@ code {
 .tag-container {
     padding: 5px;
     font-size: 12px;
-    .ind-tag:hover {
-        border-color: $hover-link-color;
-    }
+}
+
+.ind-tag:hover {
+    border-color: $hover-link-color;
 }
 
 .master-tag-list {
@@ -307,7 +312,7 @@ code {
 
     text-align: center;
 
-    a {
+    div.ind-article {
         color: black;
         text-decoration: none;
         font-weight: normal;
@@ -316,7 +321,6 @@ code {
         display: inline-block;
         vertical-align: top;
         width: 85%;
-        height: #{$list-height};
         margin: 5px;
         padding: 10px;
         overflow: hidden;
@@ -329,20 +333,23 @@ code {
 
         @include tablet {
             width: 300px;
+            height: #{$list-height};
         }
         @include desktop {
             width: 400px;
+            height: #{$list-height};
         }
 
 
-        &:hover {
+        /*&:hover {
             background-color: $hover-navlink-color;
             height: auto;
             min-height: #{$list-height};
             ;
-        }
+        }*/
 
-        h1 {
+        a.ind-article-heading {
+            display: block;
             font-size: 20px;
             font-weight: bold;
             padding: 5px;
@@ -353,16 +360,11 @@ code {
             margin: -10px -10px 0px -10px;
             max-height: 95px;
 
-            @include desktop { 
+            @include notmobile { 
                 text-overflow: ellipsis;
                 overflow-x: hidden;
                 white-space: nowrap;
             }
-            @include tablet { 
-                text-overflow: ellipsis;
-                overflow-x: hidden;
-                white-space: nowrap;
-            }    
 
             &:hover {
               font-style: italic;
@@ -378,6 +380,19 @@ code {
 
         h3 {
             font-size: 9px;
+        }
+
+        a.ind-article-read-more {
+            width: 100%;
+            background-color: $behind-bg-color;
+            display: block;
+            height: 45px;
+
+            @include notmobile {
+                position: absolute;
+                left: 10px;
+                bottom: 0px;
+            }
         }
     }
 
@@ -395,7 +410,10 @@ code {
 
 // this places a section-title inside of the <a> for
 // an individual article
-div.mini-section-title {
+a.mini-section-title {
+    display: block;
+    font-weight: normal;
+    font-family: $paragraph-fonts;
     background-color: $navlink-selected-color;
     color: $navlink-selected-txt-color;
     font-style: italic;
@@ -404,7 +422,7 @@ div.mini-section-title {
     bottom: -10px;
     right: 0px;
     border-radius: 5px;
-    padding: 0px 15px;
+    padding: 3px 15px 0px 15px;
     margin: -10px -10px 10px -10px;
     width: 100%;
 
