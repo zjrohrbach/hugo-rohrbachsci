@@ -1,6 +1,7 @@
 {{/* USAGE: {{ partial "article-ind-link.html" (dict "showMiniSection" [true|false] "thisPage" . "siteInfo" .Site ) }} */}}
 <div class="ind-article">
     <a class="ind-article-heading" href="{{ .thisPage.Permalink }}">{{ .thisPage.Title }}</a>
+    <!--{{ with .thisPage.Param "Subtitle" }}<div class="ind-article-heading-sub">{{ . }}</div>{{ end }}-->
     <h2>{{ .thisPage.PublishDate.Format "Jan 02, 2006" }}</h2>
     <h3>{{ range .thisPage.Params.tags }} <div class="ind-tag"><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{- . -}}</a></div> {{end}}</h3>
     <p>{{ .thisPage.Summary | safeHTML }}</p>

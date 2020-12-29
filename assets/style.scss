@@ -19,7 +19,7 @@ $code-block-color: #eee;
 $accent-color: brown;
 $accent-text-color: white;
 $border-rad: 10px;
-$list-height: 230px;
+$list-height: 270px;
 $main-container-size: 900px;
 
 $heading-fonts: Verdana, serif;
@@ -239,11 +239,15 @@ code {
 }
 
 #article-title{
-
-
     h1 {
-
-        font-size: 30px;     
+        font-size: 30px;
+        padding: 0px;   
+    }
+    h2 {
+        font-size: 26px;
+        font-style: italic;
+        margin-top: -20px;
+        padding: 0px;
     }
     
 }
