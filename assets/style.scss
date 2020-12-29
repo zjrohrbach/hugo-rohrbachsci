@@ -282,11 +282,7 @@ code {
     text-align: center;
     margin: auto;
 
-    @include desktop {
-        width: 50%;
-    }
-
-    @include tablet {
+    @include notmobile {
         width: 50%;
     }
 
@@ -430,11 +426,7 @@ a.mini-section-title {
     margin: -10px -10px 10px -10px;
     width: 100%;
 
-    @include desktop { 
-        width: auto;
-        text-align: right;
-    }
-    @include tablet { 
+    @include notmobile { 
         width: auto;
         text-align: right;
     }
@@ -453,12 +445,7 @@ a.mini-section-title {
     background: $behind-bg-color;
     padding: 10px;
 
-    @include desktop {
-        white-space: nowrap;
-        overflow: scroll;
-        padding: 30px;
-    }
-    @include tablet {
+    @include notmobile {
         white-space: nowrap;
         overflow: scroll;
         padding: 30px;
@@ -471,7 +458,7 @@ a.mini-section-title {
     .spacer {
         display: none;
 
-        @include notmobile{
+        @include notmobile {
             width: 20px;
             display: inline-block;
         }
@@ -486,8 +473,7 @@ div.fade-block{
     z-index: 10;
     top: #{$main-container-padding+95px};
 
-    @include desktop { display: block; }
-    @include tablet { display: block; }
+    @include notmobile { display: block; }
 }
 
 .right {
