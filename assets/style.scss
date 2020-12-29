@@ -325,7 +325,7 @@ code {
         padding: 10px;
         overflow: hidden;
         text-align: left;
-        background-image: linear-gradient(to bottom, transparent, $behind-bg-color);
+        background-image: linear-gradient(to bottom, transparent 0%, $behind-bg-color 70%);
         border-style: solid;
         border-radius: 10px;
         position: relative;
@@ -384,7 +384,7 @@ code {
 
         a.ind-article-read-more {
             width: 100%;
-            background-color: $behind-bg-color;
+            background-image: linear-gradient(to bottom, transparent 0%, $behind-bg-color 15%);;
             display: block;
             height: 45px;
 
