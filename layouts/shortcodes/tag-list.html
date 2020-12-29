@@ -1,12 +1,10 @@
-<div class="list-container">
+<ul>
     {{ $tag_key := .Get 0 }}
     {{ range .Site.Pages }}
         {{ if in .Params.tags $tag_key }}
-            <a href="{{ .Permalink }}" class="title-only">
-                <h1>{{ .Title }}</h1>
-                <h2>{{ .PublishDate.Format "Jan 02, 2006" }}</h2>
-                <p>{{ .Description }}</p>
-            </a>
+            <li>
+                <a href="{{ .Permalink }}" class="title-only">{{ .Title }}</a> ({{ .PublishDate.Format "Jan 02, 2006" }}) - <em>{{ .Summary | plainify }}</em>
+            </li>
         {{ end }}
     {{ end }}
-</div>
+</ul>
