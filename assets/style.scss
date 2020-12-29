@@ -469,8 +469,12 @@ a.mini-section-title {
     }
 
     .spacer {
-        width: 20px;
-        display: inline-block;
+        display: none;
+
+        @include notmobile{
+            width: 20px;
+            display: inline-block;
+        }
     }
 }
 
