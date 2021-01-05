@@ -267,7 +267,8 @@ code {
 //==================================//
 
 //the tag container is on an individual page
-//tag containers in article lists are contained within <h3>'s
+//tag containers in article lists are contained within 
+//.tag-container-small's below
 .tag-container {
     padding: 5px;
     font-size: 12px;
@@ -312,7 +313,7 @@ code {
 
     text-align: center;
 
-    div.ind-article {
+    article.ind-article-list {
         color: black;
         text-decoration: none;
         font-weight: normal;
@@ -348,7 +349,7 @@ code {
             ;
         }*/
 
-        a.ind-article-heading {
+        h1 {
             display: block;
             font-size: 20px;
             font-weight: bold;
@@ -366,19 +367,26 @@ code {
                 white-space: nowrap;
             }
 
-            &:hover {
-              font-style: italic;
-              text-decoration: underline;
-              white-space: normal;
-              max-height: 100%;
+            a {
+                color: $accent-text-color;
+
+                &:hover {
+                    font-style: italic;
+                    text-decoration: underline;
+                    white-space: normal;
+                    max-height: 100%;
+                  }
             }
         }
 
-        h2 {
+        .date-small {
             font-size: 10px;
+            font-family: $heading-fonts;
+            font-weight: bolder;
+            margin: 10px 0px;
         }
 
-        h3 {
+        .tag-container-small {
             font-size: 9px;
         }
 
