@@ -3,18 +3,31 @@
     <h1><a href="{{ .thisPage.Permalink }}">{{ .thisPage.Title }}</a></h1>
     <!--{{ with .thisPage.Param "Subtitle" }}<div class="ind-article-heading-sub">{{ . }}</div>{{ end }}-->
     <div class="date-small">{{ .thisPage.PublishDate.Format "Jan 02, 2006" }}</div>
-    <div class="tag-container-small">{{ range .thisPage.Params.tags }} <div class="ind-tag"><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{- . -}}</a></div> {{end}}</div>
-    <p>{{ .thisPage.Summary | safeHTML }}</p>
+    <div class="tag-container-small">
+        {{ range .thisPage.Params.tags }}
+            <div class="ind-tag"><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{- . -}}</a></div> 
+        {{ end }}
+    </div>
+    
+    {{- $thisSummary := print "<p>" .thisPage.Summary "</p>"  }}
+
+    {{/* The following lines are needed to deal with the fact that the summary may or may not already be enclosed in <p>'s */}}
+        {{- $thisSummary = replace $thisSummary "<p><p>" "<p>" -}}
+        {{- $thisSummary = replace $thisSummary "</p></p>" "</p>" -}}
+
+    {{- $thisSummary | safeHTML }}
+
     <a class="ind-article-read-more" href="{{ .thisPage.Permalink }}">(Read more...)</a>
-    {{ $sectionTitle := .thisPage.Section }}
-    {{ $sectionURL := "" }}
+
+    {{- $sectionTitle := .thisPage.Section -}}
+    {{- $sectionURL := "" -}}
     {{ with .siteInfo.GetPage $sectionTitle }}
-        {{ $sectionTitle = .Title }}
-        {{ $sectionURL = .Permalink }}
+        {{- $sectionTitle = .Title -}}
+        {{- $sectionURL = .Permalink -}}
     {{ end }}
-    {{ if .showMiniSection }}
+    {{ if .showMiniSection -}}
         <a href="{{ $sectionURL }}" class="mini-section-title">
-            {{ $sectionTitle }}
+            {{- $sectionTitle -}}
         </a>
     {{ end }}
 </article>
