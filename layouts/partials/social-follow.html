@@ -1,14 +1,14 @@
 <!-- This set of follow icons is taken from the ANANKE theme https://github.com/theNewDynamic/gohugo-theme-ananke -->
 {{- $icon_size := "32px" -}}
-{{- $social_media := slice "stackoverflow" "facebook" "twitter" "instagram" "youtube" "linkedin" "github" "gitlab" "keybase" "medium" "mastodon" "slack" "rss" -}}
+{{- $social_media := slice "StackOverflow" "Facebook" "Twitter" "Instagram" "YouTube" "LinkedIn" "GitHub" "GitLab" "Keybase" "Medium" "Mastodon" "Slack" "RSS" -}}
 {{- $dot_passthrough := . -}}
 
 {{- range $social_media -}}
   {{- $this_key := . -}}
   {{ with $dot_passthrough.Param . }}
-    <a href="{{ . }}" target="_blank">
+    <a href="{{ . }}" target="_blank" title="Follow on {{ $this_key }}">
 
-      {{ partial (print "svg/" $this_key ".svg") (dict "size" $icon_size) }}
+      {{ partial (print "svg/" ( $this_key | lower ) ".svg") (dict "size" $icon_size) }}
     </a>
   {{ end }}
 {{- end -}}
