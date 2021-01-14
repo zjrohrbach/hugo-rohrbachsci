@@ -20,7 +20,7 @@
      {{ partial "social-follow.html" . }}
 </div>
 
-<nav class="sidebar-nav">
+<nav>
     {{ $currentPage := . }}
     <a{{if eq .RelPermalink "/" }} id="you-are-here"{{end}} href="/">Home</a>
     {{ range .Site.Menus.main }}
@@ -30,13 +30,13 @@
     {{ end }}
 </nav>
 
-<div id="main-container">
+<main>
 
 {{ block "main-content" . }}
     <!-- content goes here -->
 {{ end }}
 
-</div>
+</main>
 
 {{ block "extra-footer-matter" . }} {{ end }}
 
