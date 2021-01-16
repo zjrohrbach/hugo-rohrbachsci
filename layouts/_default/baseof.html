@@ -6,7 +6,7 @@
     <title>{{ .Title }} - {{ .Site.Title }}</title>
     {{ hugo.Generator }}
     {{ $styles := resources.Get "style.scss" | toCSS }}
-    <link rel="stylesheet" href="{{ $styles.Permalink }}">
+    <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
     {{ with .Param "website-defined-css" }}<link rel="stylesheet" href="{{ . }}">{{ end }}
     {{ partial "favicon.html" . }}
     {{ block "extra-head-matter" . }} {{ end }}
