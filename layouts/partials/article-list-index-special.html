@@ -1,7 +1,46 @@
 {{ $showMiniSection := true }}
 
-<div class="list-container index-special">
-    {{- $n_posts := $.Param "recent_posts_number" | default 5 -}}
+<script type="text/javascript">
+    function moveTo(newLocation, styleID) {
+        scroll_window.scrollLeft = newLocation;
+    }
+    function moveRight() {
+        scroll_window.scrollLeft += 50;
+        scrolling = window.setTimeout(function(){ moveRight() }, 10);
+    }
+    function moveLeft() {
+        scroll_window.scrollLeft -= 50;
+        scrolling = window.setTimeout(function(){ moveLeft() }, 10);
+    }
+    function stopScroll() {
+        window.clearTimeout(scrolling)
+    }
+    function updateHighlight() {
+        var element = document.getElementById("window-nav3")
+        if(scroll_window.scrollLeft > 600) {
+            element.className = 'highlight';
+        } else {
+            element.classList.remove('highlight');
+        }
+    }
+</script>
+<style>
+    .highlight {
+        background-color: red;
+    }
+</style>
+
+{{- $n_posts := $.Param "recent_posts_number" | default 5 -}}
+
+<div class="list-container-navigation">
+    <a href="javascript:void(0)" onmouseover="moveLeft()" onmouseout="stopScroll()" id="left_id">Left</a>
+    {{ range $i, $sequence := (seq $n_posts) }}
+        <a href="javascript:void(0)" onmouseover="moveTo({{ mul $i 320 }}, this)" id="window-nav{{ add $i 1 }}">{{ add $i 1 }}</a>
+    {{ end }}
+    <a href="javascript:void(0)" onmouseover="moveRight()" onmouseout="stopScroll()">Right</a>
+</div>
+
+<div class="list-container index-special" id="scroll_window" onscroll="updateHighlight()">
     {{/* Range through the first $n_posts items of the section */}}
     {{/* Thanks to Ananke theme for helping me figure out how to do this*/}}    
     {{ range (first $n_posts .Site.RegularPages) }}

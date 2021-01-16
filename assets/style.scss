@@ -457,6 +457,7 @@ a.mini-section-title {
         white-space: nowrap;
         overflow: scroll;
         padding: 30px;
+        scroll-behavior: smooth;
     }
 
     a {
@@ -472,7 +473,18 @@ a.mini-section-title {
         }
     }
 
-    article { width: 250px !important; }
+    article { width: 300px !important; }
+}
+
+.list-container-navigation {
+    a {
+        display:inline-block;
+        width: 50px;
+    }
+}
+
+.highlight {
+    background-color: red;
 }
 
 div.fade-block{
