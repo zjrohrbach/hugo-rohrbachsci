@@ -123,13 +123,16 @@ main {
 }
 
 #website-name {
-    color: $title-color;
-    font-weight: bold;
-    font-size: 36px;
-    text-decoration: none;
-    font-family: Helvetica;
-
-    &:hover {font-style: normal}
+    display: inline;
+    a {
+        color: $title-color;
+        font-weight: bold;
+        font-size: 36px;
+        text-decoration: none;
+        font-family: Helvetica;
+    
+        &:hover {font-style: normal}
+    }
 }
 
 #social-follow {
