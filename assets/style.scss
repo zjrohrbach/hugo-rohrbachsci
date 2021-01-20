@@ -248,6 +248,13 @@ code {
     font-style: italic;
     margin-top: -20px;
     padding: 0px;
+
+}
+
+.article-date {
+    padding: 20px 0px;
+    font-weight: bold;
+    color: $navlink-selected-color;
 }
 
 #article-container {
