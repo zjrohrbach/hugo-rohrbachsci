@@ -239,17 +239,15 @@ code {
 }
 
 #article-title{
-    h1 {
-        font-size: 30px;
-        padding: 0px;   
-    }
-    h2 {
-        font-size: 26px;
-        font-style: italic;
-        margin-top: -20px;
-        padding: 0px;
-    }
-    
+    font-size: 30px;
+    padding: 0px;   
+}
+
+.subtitle {
+    font-size: 26px;
+    font-style: italic;
+    margin-top: -20px;
+    padding: 0px;
 }
 
 #article-container {
