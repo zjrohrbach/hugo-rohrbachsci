@@ -1,7 +1,7 @@
 {{ $cssVersion := 1 }}
 <!doctype html>
 <html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ .Title }} - {{ .Site.Title }}</title>
@@ -11,35 +11,35 @@
     {{ with .Param "website-defined-css" }}<link rel="stylesheet" href="{{ . }}">{{ end }}
     {{ partial "favicon.html" . }}
     {{ block "extra-head-matter" . }} {{ end }}
-</head>
+  </head>
 
-<body>
+  <body>
 
-<a id="website-name" href="/">Rohrbach Science</a>
+    <a id="website-name" href="/">Rohrbach Science</a>
 
-<div id="social-follow">
-     {{ partial "social-follow.html" . }}
-</div>
+    <div id="social-follow">
+      {{ partial "social-follow.html" . }}
+    </div>
 
-<nav>
-    {{ $currentPage := . }}
-    <a{{if eq .RelPermalink "/" }} id="you-are-here"{{end}} href="/">Home</a>
-    {{ range .Site.Menus.main }}
-    <a{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} id="you-are-here"{{ end }} href="{{ .URL }}" title="{{ .Title }}">
+    <nav>
+      {{ $currentPage := . }}
+      <a{{if eq .RelPermalink "/" }} id="you-are-here"{{end}} href="/">Home</a>
+      {{ range .Site.Menus.main }}
+      <a{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} id="you-are-here"{{ end }} href="{{ .URL }}" title="{{ .Title }}">
         {{- .Name -}}
-    </a>
-    {{ end }}
-</nav>
+      </a>
+      {{ end }}
+    </nav>
 
-<main>
+    <main>
 
-{{ block "main-content" . }}
-    <!-- content goes here -->
-{{ end }}
+      {{ block "main-content" . }}
+        <!-- content goes here -->
+      {{ end }}
 
-</main>
+    </main>
 
-{{ block "extra-footer-matter" . }} {{ end }}
+    {{ block "extra-footer-matter" . }} {{ end }}
 
-</body>
+  </body>
 </html>
