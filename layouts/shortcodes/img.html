@@ -4,7 +4,7 @@
     {{ $image := $image.Resize (.Get "resize") }}
     {{ .Scratch.Set "image_link" $image.RelPermalink }}
 {{end}}
-<img src="{{ .Scratch.Get "image_link" }}"{{ with .Get "alt" }}
-    alt="{{ . }}"{{end}}{{ with .Get "class" }}
+<img src="{{ .Scratch.Get "image_link" }}"
+    alt="{{ .Scratch.Get "alt }}"{{ with .Get "class" }}
     class="{{ . }}"{{end}}{{ with .Get "style" }}
     style="{{ . }}"{{end}} />
