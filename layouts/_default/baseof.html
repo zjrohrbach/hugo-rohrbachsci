@@ -33,9 +33,11 @@
 
     <main>
 
-      {{ block "main-content" . }}
-        <!-- content goes here -->
-      {{ end }}
+      <section id="main-content">
+        {{ block "main-content" . }}
+          <!-- content goes here -->
+        {{ end }}
+      </section>
 
     </main>
 
