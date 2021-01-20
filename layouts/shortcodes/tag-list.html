@@ -3,7 +3,7 @@
     {{ range .Site.Pages }}
         {{ if in .Params.tags $tag_key }}
             <li>
-                <a href="{{ .Permalink }}" class="title-only">{{ .Title }}</a> ({{ .PublishDate.Format "Jan 02, 2006" }}) - <em>{{ .Summary | plainify }}</em>
+                <a href="{{ .Permalink }}">{{ .Title }}</a> ({{ .PublishDate.Format "Jan 02, 2006" }}) - <em>{{ .Summary | plainify }}</em>
             </li>
         {{ end }}
     {{ end }}

@@ -411,17 +411,6 @@ code {
             }
         }
     }
-
-    a.title-only {
-        width: 80%;
-        max-height: 12px;
-
-        &:hover {
-            min-height: 12px;
-            max-height: #{$list-height};
-            height: auto;
-        }
-    }
 }
 
 // this places a section-title inside of the <article> for
