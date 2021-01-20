@@ -5,6 +5,6 @@
     {{ .Scratch.Set "image_link" $image.RelPermalink }}
 {{end}}
 <img src="{{ .Scratch.Get "image_link" }}"
-    alt="{{ .Scratch.Get "alt }}"{{ with .Get "class" }}
+    alt="{{ .Scratch.Get "alt" }}"{{ with .Get "class" }}
     class="{{ . }}"{{end}}{{ with .Get "style" }}
     style="{{ . }}"{{end}} />
