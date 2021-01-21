@@ -1,4 +1,5 @@
-{{ $cssVersion := 1 }}
+{{/* this code tacks a timestamp onto the css file in order to avoid caching mistakes */}}
+{{- $cssVersion := now.Format "200601021504" -}}
 <!doctype html>
 <html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
   <head>
