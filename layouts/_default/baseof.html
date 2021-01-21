@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ .Title }} - {{ .Site.Title }}</title>
     {{ hugo.Generator }}
-    {{ $styles := resources.Get "style.scss" | toCSS (dict "targetPath" ( print "style-" $cssVersion ".css" ) ) }}
+    {{ $styles := resources.Get "style.scss" | toCSS ( dict "targetPath" ( print "style-" $cssVersion ".css" ) ) }}
     <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
     {{ with .Param "website-defined-css" }}<link rel="stylesheet" href="{{ . }}">{{ end }}
     {{ partial "favicon.html" . }}
