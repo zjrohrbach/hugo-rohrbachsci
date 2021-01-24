@@ -138,6 +138,8 @@ main {
     svg {
         fill: $title-color;
     }
+
+    a:hover { text-decoration: none }
 }
 
 //==================================//
@@ -239,17 +241,22 @@ code {
 }
 
 #article-title{
-    h1 {
-        font-size: 30px;
-        padding: 0px;   
-    }
-    h2 {
-        font-size: 26px;
-        font-style: italic;
-        margin-top: -20px;
-        padding: 0px;
-    }
-    
+    font-size: 30px;
+    padding: 0px;   
+}
+
+.subtitle {
+    font-size: 26px;
+    font-style: italic;
+    margin-top: -20px;
+    padding: 0px;
+
+}
+
+.article-date {
+    padding: 20px 0px;
+    font-weight: bold;
+    color: $navlink-selected-color;
 }
 
 #article-container {
@@ -403,20 +410,9 @@ code {
             }
         }
     }
-
-    a.title-only {
-        width: 80%;
-        max-height: 12px;
-
-        &:hover {
-            min-height: 12px;
-            max-height: #{$list-height};
-            height: auto;
-        }
-    }
 }
 
-// this places a section-title inside of the <a> for
+// this places a section-title inside of the <article> for
 // an individual article
 a.mini-section-title {
     display: block;
@@ -458,6 +454,8 @@ a.mini-section-title {
         overflow: scroll;
         padding: 30px;
         scroll-behavior: smooth;
+
+        article { width: 250px !important; }
     }
 
     a {
@@ -472,8 +470,6 @@ a.mini-section-title {
             display: inline-block;
         }
     }
-
-    article { width: 300px !important; }
 }
 
 .list-container-navigation {

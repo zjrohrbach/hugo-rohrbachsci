@@ -1,11 +1,11 @@
 {{ define "main-content" }}
 
-<a href="#"><h1 id="section-title">{{ .Title }}</h1></a>
+  <a href="#"><h1 id="section-title">{{ .Title }}</h1></a>
 
-<h1>Recent Posts</h1>
+  <h1>Recent Posts</h1>
 
-{{ partial "article-list-index-special.html" . }}
+  {{ partial "article-list-index-special.html" . }}
 
-{{ .Content }}
+  {{ .Content }}
 
 {{ end }}
