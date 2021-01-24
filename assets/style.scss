@@ -454,6 +454,8 @@ a.mini-section-title {
         white-space: nowrap;
         overflow: scroll;
         padding: 30px;
+
+        article { width: 250px !important; }
     }
 
     a {
@@ -468,8 +470,6 @@ a.mini-section-title {
             display: inline-block;
         }
     }
-
-    article { width: 250px !important; }
 }
 
 div.fade-block{
