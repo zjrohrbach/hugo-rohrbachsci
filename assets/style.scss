@@ -141,6 +141,8 @@ main {
     svg {
         fill: $title-color;
     }
+
+    a:hover { text-decoration: none }
 }
 
 //==================================//
