@@ -15,32 +15,56 @@
     function stopScroll() {
         window.clearTimeout(scrolling)
     }
+
+    var stepSize = 260;
+
     function updateHighlight() {
-        var element = document.getElementById("window-nav3")
+        var maxScroll = scroll_window.scrollWidth - scroll_window.clientWidth;
+
+        /*var element = document.getElementById("window-nav3")
         if(scroll_window.scrollLeft > 600) {
             element.className = 'highlight';
         } else {
             element.classList.remove('highlight');
+        }*/
+        if (scroll_window.scrollLeft < 5) {
+            document.getElementById("nav-left").className = "scroll-disable";
+        } else {
+            document.getElementById("nav-left").classList.remove("scroll-disable");
+        }
+        if (scroll_window.scrollLeft >= maxScroll - 5) {
+            document.getElementById("nav-right").className = "scroll-disable";
+        } else {
+            document.getElementById("nav-right").classList.remove("scroll-disable");
+        }
+    }
+    function moveDirection(dir) {
+        var maxScroll = scroll_window.scrollWidth - scroll_window.clientWidth;
+
+        if(dir == 'right') {
+            if (scroll_window.scrollLeft < maxScroll) {
+                scroll_window.scrollLeft += stepSize;   
+            }    
+        } else if (dir == 'left') {
+            if (scroll_window.scrollLeft > 0) {
+                scroll_window.scrollLeft -= stepSize;   
+            } 
         }
     }
 </script>
-<style>
-    .highlight {
-        background-color: red;
-    }
-</style>
 
 {{- $n_posts := $.Param "recent_posts_number" | default 5 -}}
 
-<div class="list-container-navigation">
+<!--<div class="list-container-navigation">
     <a href="javascript:void(0)" onmouseover="moveLeft()" onmouseout="stopScroll()" id="left_id">Left</a>
     {{ range $i, $sequence := (seq $n_posts) }}
         <a href="javascript:void(0)" onmouseover="moveTo({{ mul $i 320 }}, this)" id="window-nav{{ add $i 1 }}">{{ add $i 1 }}</a>
     {{ end }}
     <a href="javascript:void(0)" onmouseover="moveRight()" onmouseout="stopScroll()">Right</a>
-</div>
+</div>-->
 
-<div class="list-container index-special" id="scroll_window" onscroll="updateHighlight()">
+<div class="list-container index-special" id="scroll_window" onscroll="updateHighlight()" onload="updateHighlight()">
+    <div class="spacer"></div>
     {{/* Range through the first $n_posts items of the section */}}
     {{/* Thanks to Ananke theme for helping me figure out how to do this*/}}    
     {{ range (first $n_posts .Site.RegularPages) }}
@@ -48,6 +72,6 @@
     {{ end }}
     
     <div class="spacer"></div>
-    <div class="fade-block right"></div>
-    <div class="fade-block left"></div>
+    <div class="fade-block right"><p id="nav-right"><a href="javascript:void()" onclick="moveDirection('right')">&gt;</a></p></div>
+    <div class="fade-block left"><p id="nav-left" class="scroll-disable"><a href="javascript:void()" onclick="moveDirection('left')">&lt;</a></p></div>
 </div>

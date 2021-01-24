@@ -469,7 +469,7 @@ a.mini-section-title {
         display: none;
 
         @include notmobile {
-            width: 20px;
+            width: 22px;
             display: inline-block;
         }
     }
@@ -494,15 +494,36 @@ div.fade-block{
     z-index: 10;
     top: #{$main-container-padding+95px};
 
-    @include notmobile { display: block; }
+    @include notmobile { 
+        display: block; 
+
+        p {
+            margin-top: #{($list-height+95px)/2-15px};
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 30px;
+            background-color: red;
+            width: 30px;
+            height: 30px;
+            border-radius: 30px;
+        }
+
+        .scroll-disable {
+            background-color: gray;
+
+            a{ 
+                cursor: default;
+            }
+        }
+    }
 }
 
 .right {
-    background-image: linear-gradient(to right, rgba(255,255,255,0) 60%, $behind-bg-color 90%);
+    background-image: linear-gradient(to right, rgba(255,255,255,0) 10%, $behind-bg-color 60%);
     right: #{$main-container-padding};
 }
 
 .left {
-    background-image: linear-gradient(to left, rgba(255,255,255,0) 60%, $behind-bg-color 90%);
+    background-image: linear-gradient(to left, rgba(255,255,255,0) 10%, $behind-bg-color 60%);
     left: #{$main-container-padding};
 }
