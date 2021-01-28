@@ -2,35 +2,32 @@
 
 <script type="text/javascript">
 <!--
-  function toggleLink (id, enOrDis) {
+  function toggleDisable (id, condition) {
+    // id is the name of an element id
+    // condition is the condition in which link should be disabled
+
     element = document.getElementById(id);
         
-    if (enOrDis == "enable") {
-      element.classList.remove("scroll-disable");
-    } else if (enOrDis == "disable") {
+    if (condition) {
       element.className = "scroll-disable";
-    }
+    } else {
+      element.classList.remove("scroll-disable");
+    } 
 
     element = null;
   }
 
   function updateHighlight() {
+
     var maxScroll = scroll_window.scrollWidth - scroll_window.clientWidth;
 
-    if (scroll_window.scrollLeft < 5) {
-      toggleLink ("nav-left", "disable")
-    } else {
-      toggleLink ("nav-left", "enable")
-    }
+    toggleDisable("nav-left", scroll_window.scrollLeft < 5);
+    toggleDisable("nav-right", scroll_window.scrollLeft >= maxScroll - 5)
 
-    if (scroll_window.scrollLeft >= maxScroll - 5) {
-      toggleLink ("nav-right", "disable")
-    } else {
-      toggleLink ("nav-right", "enable")
-    }
   }
 
   function moveDirection(dir) {
+
     var stepSize = 0.6 * scroll_window.clientWidth;
     var maxScroll = scroll_window.scrollWidth - scroll_window.clientWidth;
 
@@ -39,6 +36,7 @@
     } else if (dir == 'left' && scroll_window.scrollLeft > 0) {
       scroll_window.scrollLeft -= stepSize;   
     }
+
   }
 //-->
 </script>
