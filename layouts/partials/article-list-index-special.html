@@ -1,5 +1,3 @@
-{{ $showMiniSection := true }}
-
 <script type="text/javascript">
 <!--
   function toggleDisable (id, condition) {
@@ -42,6 +40,7 @@
 </script>
 
 {{- $n_posts := $.Param "recent_posts_number" | default 5 -}}
+{{ $showMiniSection := true }}
 
 <div class="list-container index-special" id="scroll_window" onscroll="updateHighlight()" onload="updateHighlight()">
   <div class="spacer"></div>
