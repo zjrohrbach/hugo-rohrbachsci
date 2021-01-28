@@ -1,77 +1,59 @@
 {{ $showMiniSection := true }}
 
 <script type="text/javascript">
-    function moveTo(newLocation, styleID) {
-        scroll_window.scrollLeft = newLocation;
-    }
-    function moveRight() {
-        scroll_window.scrollLeft += 50;
-        scrolling = window.setTimeout(function(){ moveRight() }, 10);
-    }
-    function moveLeft() {
-        scroll_window.scrollLeft -= 50;
-        scrolling = window.setTimeout(function(){ moveLeft() }, 10);
-    }
-    function stopScroll() {
-        window.clearTimeout(scrolling)
+<!--
+  function toggleLink (id, enOrDis) {
+    element = document.getElementById(id);
+        
+    if (enOrDis == "enable") {
+      element.classList.remove("scroll-disable");
+    } else if (enOrDis == "disable") {
+      element.className = "scroll-disable";
     }
 
-    var stepSize = 260;
+    element = null;
+  }
 
-    function updateHighlight() {
-        var maxScroll = scroll_window.scrollWidth - scroll_window.clientWidth;
+  function updateHighlight() {
+    var maxScroll = scroll_window.scrollWidth - scroll_window.clientWidth;
 
-        /*var element = document.getElementById("window-nav3")
-        if(scroll_window.scrollLeft > 600) {
-            element.className = 'highlight';
-        } else {
-            element.classList.remove('highlight');
-        }*/
-        if (scroll_window.scrollLeft < 5) {
-            document.getElementById("nav-left").className = "scroll-disable";
-        } else {
-            document.getElementById("nav-left").classList.remove("scroll-disable");
-        }
-        if (scroll_window.scrollLeft >= maxScroll - 5) {
-            document.getElementById("nav-right").className = "scroll-disable";
-        } else {
-            document.getElementById("nav-right").classList.remove("scroll-disable");
-        }
+    if (scroll_window.scrollLeft < 5) {
+      toggleLink ("nav-left", "disable")
+    } else {
+      toggleLink ("nav-left", "enable")
     }
-    function moveDirection(dir) {
-        var maxScroll = scroll_window.scrollWidth - scroll_window.clientWidth;
 
-        if(dir == 'right') {
-            if (scroll_window.scrollLeft < maxScroll) {
-                scroll_window.scrollLeft += stepSize;   
-            }    
-        } else if (dir == 'left') {
-            if (scroll_window.scrollLeft > 0) {
-                scroll_window.scrollLeft -= stepSize;   
-            } 
-        }
+    if (scroll_window.scrollLeft >= maxScroll - 5) {
+      toggleLink ("nav-right", "disable")
+    } else {
+      toggleLink ("nav-right", "enable")
     }
+  }
+
+  function moveDirection(dir) {
+    var stepSize = 0.6 * scroll_window.clientWidth;
+    var maxScroll = scroll_window.scrollWidth - scroll_window.clientWidth;
+
+    if(dir == 'right' && scroll_window.scrollLeft < maxScroll) {
+      scroll_window.scrollLeft += stepSize;     
+    } else if (dir == 'left' && scroll_window.scrollLeft > 0) {
+      scroll_window.scrollLeft -= stepSize;   
+    }
+  }
+//-->
 </script>
 
 {{- $n_posts := $.Param "recent_posts_number" | default 5 -}}
 
-<!--<div class="list-container-navigation">
-    <a href="javascript:void(0)" onmouseover="moveLeft()" onmouseout="stopScroll()" id="left_id">Left</a>
-    {{ range $i, $sequence := (seq $n_posts) }}
-        <a href="javascript:void(0)" onmouseover="moveTo({{ mul $i 320 }}, this)" id="window-nav{{ add $i 1 }}">{{ add $i 1 }}</a>
-    {{ end }}
-    <a href="javascript:void(0)" onmouseover="moveRight()" onmouseout="stopScroll()">Right</a>
-</div>-->
-
 <div class="list-container index-special" id="scroll_window" onscroll="updateHighlight()" onload="updateHighlight()">
-    <div class="spacer"></div>
-    {{/* Range through the first $n_posts items of the section */}}
-    {{/* Thanks to Ananke theme for helping me figure out how to do this*/}}    
-    {{ range (first $n_posts .Site.RegularPages) }}
-        {{ partial "article-ind-link.html" (dict "showMiniSection" $showMiniSection "thisPage" . "siteInfo" .Site ) }}
-    {{ end }}
+  <div class="spacer"></div>
+  {{/* Range through the first $n_posts items of the section */}}
+  {{/* Thanks to Ananke theme for helping me figure out how to do this*/}}    
+  {{ range (first $n_posts .Site.RegularPages) }}
+    {{ partial "article-ind-link.html" (dict "showMiniSection" $showMiniSection "thisPage" . "siteInfo" .Site ) }}
+  {{ end }}
     
-    <div class="spacer"></div>
-    <div class="fade-block right"><p id="nav-right"><a href="javascript:void()" onclick="moveDirection('right')">&gt;</a></p></div>
-    <div class="fade-block left"><p id="nav-left" class="scroll-disable"><a href="javascript:void()" onclick="moveDirection('left')">&lt;</a></p></div>
+  <div class="spacer"></div>
+  <div class="fade-block right"><p id="nav-right" onclick="moveDirection('right')">&gt;</p></div>
+  <div class="fade-block left"><p id="nav-left" class="scroll-disable" onclick="moveDirection('left')">&lt;</p></div>
 </div>

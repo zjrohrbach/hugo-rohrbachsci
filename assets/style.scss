@@ -506,14 +506,14 @@ div.fade-block{
             width: 30px;
             height: 30px;
             border-radius: 30px;
+
+            cursor: pointer;
+            user-select: none;
         }
 
         .scroll-disable {
             background-color: gray;
-
-            a{ 
-                cursor: default;
-            }
+            cursor: default;
         }
     }
 }
