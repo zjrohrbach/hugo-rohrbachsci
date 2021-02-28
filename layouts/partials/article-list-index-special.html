@@ -1,14 +1,57 @@
+<script type="text/javascript">
+  <!--
+    function toggleDisable (id, condition) {
+    // id is the name of an element id
+    // condition is the condition in which link should be disabled
+
+    element = document.getElementById(id);
+        
+    if (condition) {
+      element.className = "scroll-disable";
+    } else {
+      element.classList.remove("scroll-disable");
+    } 
+
+    element = null;
+  }
+
+  function updateHighlight() {
+    scrollTarget = document.getElementById("scroll_window")
+    var maxScroll = scrollTarget.scrollWidth - scrollTarget.clientWidth;
+
+    toggleDisable("nav-left", scrollTarget.scrollLeft < 5);
+    toggleDisable("nav-right", scrollTarget.scrollLeft >= maxScroll - 5)
+
+  }
+
+  function moveDirection(dir) {
+
+    scrollTarget = document.getElementById("scroll_window")
+    var stepSize = 0.6 * scrollTarget.clientWidth;
+    var maxScroll = scrollTarget.scrollWidth - scrollTarget.clientWidth;
+
+    if(dir == 'right' && scrollTarget.scrollLeft < maxScroll) {
+      scrollTarget.scrollLeft += stepSize;     
+    } else if (dir == 'left' && scrollTarget.scrollLeft > 0) {
+      scrollTarget.scrollLeft -= stepSize;   
+    }
+
+  }
+  //-->
+</script>
+
+{{- $n_posts := $.Param "recent_posts_number" | default 5 -}}
 {{ $showMiniSection := true }}
 
-<div class="list-container index-special">
-    {{- $n_posts := $.Param "recent_posts_number" | default 5 -}}
-    {{/* Range through the first $n_posts items of the section */}}
-    {{/* Thanks to Ananke theme for helping me figure out how to do this*/}}    
-    {{ range (first $n_posts .Site.RegularPages) }}
-        {{ partial "article-ind-link.html" (dict "showMiniSection" $showMiniSection "thisPage" . "siteInfo" .Site ) }}
-    {{ end }}
+<div class="list-container index-special" id="scroll_window" onscroll="updateHighlight()" onload="updateHighlight()">
+  <div class="spacer"></div>
+  {{/* Range through the first $n_posts items of the section */}}
+  {{/* Thanks to Ananke theme for helping me figure out how to do this*/}}    
+  {{ range (first $n_posts .Site.RegularPages) }}
+    {{ partial "article-ind-link.html" (dict "showMiniSection" $showMiniSection "thisPage" . "siteInfo" .Site ) }}
+  {{ end }}
     
-    <div class="spacer"></div>
-    <div class="fade-block right"></div>
-    <div class="fade-block left"></div>
+  <div class="spacer"></div>
+  <div class="fade-block right"><p id="nav-right" onclick="moveDirection('right')">&gt;</p></div>
+  <div class="fade-block left"><p id="nav-left" class="scroll-disable" onclick="moveDirection('left')">&lt;</p></div>
 </div>
