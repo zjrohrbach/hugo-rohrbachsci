@@ -454,8 +454,8 @@ a.mini-section-title {
 
     @include notmobile {
         white-space: nowrap;
-        overflow: scroll;
-        padding: 30px;
+        overflow: hidden;
+        padding: 30px 0px;
         scroll-behavior: smooth;
 
         article { width: 250px !important; }
@@ -469,7 +469,7 @@ a.mini-section-title {
         display: none;
 
         @include notmobile {
-            width: 22px;
+            width: 60px;
             display: inline-block;
         }
     }
@@ -486,13 +486,19 @@ a.mini-section-title {
     background-color: red;
 }
 
-div.fade-block{
+$scroll-bg: $behind-bg-color;
+$scroll-font: $link-color;
+
+$scroll-bg-hover: $behind-bg-color;;
+$scroll-font-hover: $hover-link-color;
+
+div.fade-block {
     display: none;
     height: #{$list-height+95px};
     width: 100px;
     position: absolute;
     z-index: 10;
-    top: #{$main-container-padding+95px};
+    top: #{$main-container-padding+110px};
 
     @include notmobile { 
         display: block; 
@@ -502,18 +508,36 @@ div.fade-block{
             margin-left: auto;
             margin-right: auto;
             line-height: 30px;
-            background-color: red;
+            background-color: $scroll-bg;
+            border-style: solid;
+            border-width: 1px;
+            font-weight: bold;
+            color: $scroll-font;
             width: 30px;
             height: 30px;
             border-radius: 30px;
+            box-shadow:3px 3px 2px black;
 
             cursor: pointer;
             user-select: none;
+
+            &:hover {
+                color: $scroll-font-hover;
+                background-color: $scroll-bg-hover;
+                box-shadow: 2px 2px;
+            }
         }
 
         .scroll-disable {
-            background-color: gray;
+            opacity: 0.2;
             cursor: default;
+            box-shadow: 1px 1px;
+
+            &:hover {
+                color: $scroll-font;
+                background-color: $scroll-bg;
+                box-shadow: 1px 1px;
+            }
         }
     }
 }
