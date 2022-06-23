@@ -26,7 +26,6 @@
       {{ end }}
       "sectionTitle"  :     {{ $sectionTitle | jsonify }},
       "sectionURL"    :     {{ $sectionURL | jsonify }}
-
     },
     {{ end }}
     {
