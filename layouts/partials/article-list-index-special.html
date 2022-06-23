@@ -40,14 +40,12 @@
   //-->
 </script>
 
-{{- $n_posts := $.Param "recent_posts_number" | default 5 -}}
 {{ $showMiniSection := true }}
+{{ $paginator := .Paginate .Site.RegularPages  }}
 
 <div class="list-container index-special" id="scroll_window" onscroll="updateHighlight()" onload="updateHighlight()">
-  <div class="spacer"></div>
-  {{/* Range through the first $n_posts items of the section */}}
-  {{/* Thanks to Ananke theme for helping me figure out how to do this*/}}    
-  {{ range (first $n_posts .Site.RegularPages) }}
+  <div class="spacer"></div>  
+  {{ range $paginator.Pages }}
     {{ partial "article-ind-link.html" (dict "showMiniSection" $showMiniSection "thisPage" . "siteInfo" .Site ) }}
   {{ end }}
     
