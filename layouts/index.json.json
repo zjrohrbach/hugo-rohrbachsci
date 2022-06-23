@@ -1,0 +1,37 @@
+{{ $paginator := .Paginate .Site.RegularPages  }}
+{ 
+  "totalPages"        :     {{ $paginator.TotalPages | jsonify }},
+  "currentPage"       :     {{ $paginator.PageNumber | jsonify }},
+  "hasPrev"           :     {{ $paginator.HasPrev | jsonify  }},
+  "hasNext"           :     {{ $paginator.HasNext | jsonify  }},
+  {{ if $paginator.HasPrev }}
+  "prevJSON"          :     {{ $paginator.Prev.URL | jsonify }},
+  {{ end }}
+  {{ if $paginator.HasNext }}
+  "nextJSON"          :     {{ $paginator.Next.URL | jsonify }},
+  {{ end }}
+  "pages" : [
+    {{ range $paginator.Pages }}
+    {
+      "Title"         :     {{ .Title | jsonify }},
+      "Permalink"     :     {{ .Permalink | jsonify }},
+      "tags"          :     {{ .Params.tags | jsonify }},
+      "summary"       :     {{ .Summary | jsonify }},
+      "PublishDate"   :     {{ .PublishDate.Format "Jan 02, 2006" | jsonify }},
+      {{- $sectionTitle := .Section -}}
+      {{- $sectionURL := "" -}}
+      {{ with .Site.GetPage $sectionTitle }}
+          {{- $sectionTitle = .Title -}}
+          {{- $sectionURL = .Permalink -}}
+      {{ end }}
+      "sectionTitle"  :     {{ $sectionTitle | jsonify }},
+      "sectionURL"    :     {{ $sectionURL | jsonify }}
+
+    },
+    {{ end }}
+    {
+      "Permalink"     : null,
+      "PublishDate"   : null
+    }
+  ]
+}
