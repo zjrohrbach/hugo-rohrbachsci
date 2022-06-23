@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    {{ $showMiniSection := true }}
+    {{ $paginator := .Paginate .Site.RegularPages  }}
+    <div id="newarticles">
+      {{ range $paginator.Pages }}
+        {{ partial "article-ind-link.html" (dict "showMiniSection" $showMiniSection "thisPage" . "siteInfo" .Site ) }}
+      {{ end }}
+    </div>
+    <div id="json-variables">
+      {
+        "totalPages"        :     {{ $paginator.TotalPages | jsonify }},
+        "currentPage"       :     {{ $paginator.PageNumber | jsonify }},
+        "hasPrev"           :     {{ $paginator.HasPrev | jsonify  }},
+        "hasNext"           :     {{ $paginator.HasNext | jsonify  }},
+        {{ if $paginator.HasPrev }}
+        "prevURL"           :     {{ $paginator.Prev.URL | jsonify }},
+        {{ end }}
+        {{ if $paginator.HasNext }}
+        "nextURL"           :     {{ $paginator.Next.URL | jsonify }}
+        {{ end }}
+      }
+    </div>
+  </body>
+</html>
