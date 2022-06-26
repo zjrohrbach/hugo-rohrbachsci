@@ -38,14 +38,42 @@
 
   }
 
-  function loadNext(nextURL) {
+  pathToNext = '/snippets/';
+
+  function loadDoc(url, cFunction) {
+    let snippet = new XMLHttpRequest();
+    snippet.open("POST", url);
+    snippet.responseType = 'document';
+    snippet.send()
+    snippet.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        cFunction(this);
+      }
+    }
+  }
+
+  function appendArticles(snippet) {
+    let newHTML = snippet.responseXML.getElementById("newarticles").innerHTML;
+    let JSONInput = snippet.responseXML.getElementById("json-variables").innerHTML;
+    var JSONVars = JSON.parse(JSONInput);
+    let nextPageElement = document.getElementById("next-page")
+    nextPageElement.insertAdjacentHTML("beforebegin", newHTML)
+    nextPageElement.innerHTML = '<a href="" onclick="return false" onmouseup="loadNext()">Older Posts &#8811;</a> ';
+    toggleDisable("nav-right", false);
+    hasNext = JSONVars.hasNext;
+    if (hasNext) {
+      pathToNext = JSONVars.nextURL;
+    } else {
+      nextPageElement.remove();
+    }
+  }
+
+  function loadNext() {
     let loader = 'Loading';
     nextPageButton = document.getElementById('next-page');
 
     nextPageButton.innerHTML = loader;
-
-    let snippet = new XMLHttpRequest();
-    snippet.open("POST", nextURL, true); //I want to understand this function better.  I'd also like to call the TOML argument somehow.
+    loadDoc(pathToNext, appendArticles);
   }
   //-->
 </script>
@@ -72,7 +100,12 @@
   {{ end }}
 
   {{ if $paginator.HasNext }}
-  <div id="next-page"><a href="{{ $paginator.Next.URL }}" onclick="return false" onmouseup="loadNext('/snippets/')">Older Posts &#8811;</a></div>
+    {{ if eq $paginator.PageNumber 1 }}
+      <div id="next-page"><a href="{{ $paginator.Next.URL }}" onclick="return false" onmouseup="loadNext()">Older Posts &#8811;</a></div>
+    {{ else }}
+    {{/* No Javascript for later pages */}}
+      <div id="next-page"><a href="{{ $paginator.Next.URL }}">Older Posts &#8811;</a></div>
+    {{ end }}
   {{ end }}
     
   <div class="spacer"></div>

@@ -10,16 +10,16 @@
     </div>
     <div id="json-variables">
       {
-        "totalPages"        :     {{ $paginator.TotalPages | jsonify }},
-        "currentPage"       :     {{ $paginator.PageNumber | jsonify }},
-        "hasPrev"           :     {{ $paginator.HasPrev | jsonify  }},
-        "hasNext"           :     {{ $paginator.HasNext | jsonify  }},
         {{ if $paginator.HasPrev }}
         "prevURL"           :     {{ $paginator.Prev.URL | jsonify }},
         {{ end }}
         {{ if $paginator.HasNext }}
-        "nextURL"           :     {{ $paginator.Next.URL | jsonify }}
+        "nextURL"           :     {{ $paginator.Next.URL | jsonify }},
         {{ end }}
+        "totalPages"        :     {{ $paginator.TotalPages | jsonify }},
+        "currentPage"       :     {{ $paginator.PageNumber | jsonify }},
+        "hasPrev"           :     {{ $paginator.HasPrev | jsonify  }},
+        "hasNext"           :     {{ $paginator.HasNext | jsonify  }}
       }
     </div>
   </body>
