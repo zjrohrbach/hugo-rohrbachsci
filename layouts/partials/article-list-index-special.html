@@ -37,16 +37,37 @@
     }
 
   }
+
+  function loadNext() {
+    alert('load');
+    return false;
+  }
   //-->
 </script>
 
 {{ $showMiniSection := true }}
 {{ $paginator := .Paginate .Site.RegularPages  }}
 
+{{ if eq $paginator.PageNumber 1 }}
+<h1>Recent Posts</h1>
+{{ else }}
+<h1>Posts</h1>
+{{ end }}
+
+
 <div class="list-container index-special" id="scroll_window" onscroll="updateHighlight()" onload="updateHighlight()">
   <div class="spacer"></div>  
+
+  {{ if $paginator.HasPrev }}
+  <div id="prev-page"><a href="{{ $paginator.Prev.URL }}">&#8810; Newer Posts</a></div>
+  {{ end }}
+
   {{ range $paginator.Pages }}
     {{ partial "article-ind-link.html" (dict "showMiniSection" $showMiniSection "thisPage" . "siteInfo" .Site ) }}
+  {{ end }}
+
+  {{ if $paginator.HasNext }}
+  <div id="next-page"><a href="{{ $paginator.Next.URL }}" onclick="return false" onmouseup="loadNext()">Older Posts &#8811;</a></div>
   {{ end }}
     
   <div class="spacer"></div>
