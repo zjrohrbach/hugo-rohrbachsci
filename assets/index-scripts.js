@@ -44,10 +44,8 @@ function moveDirection(dir) {
 //Everytime next link is clicked, this is the order of functions:
 // loadNext() -> loadDoc() -> appendArticles()
 
-
-
-
-//This variable holds the path to the next HTML snippet.  It gets changed in 
+//This variable holds the path to the next HTML snippet.  It gets updated
+//every time appendArticles() is called.
 pathToNext = '/snippets/';
 
 function loadDoc(url, cFunction) {
