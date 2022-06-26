@@ -36,6 +36,17 @@ function toggleDisable (id, condition) {
 
   }
 
+  /////////////////////////////////////////////////////////////////////////////////
+  // Everything below this point is for live loading of the next set of articles //
+  /////////////////////////////////////////////////////////////////////////////////
+  
+  //Everytime next link is clicked, this is the order of functions:
+  // loadNext() -> loadDoc() -> appendArticles()
+
+
+
+
+  //This variable holds the path to the next HTML snippet.  It gets changed in 
   pathToNext = '/snippets/';
 
   function loadDoc(url, cFunction) {
@@ -51,13 +62,22 @@ function toggleDisable (id, condition) {
   }
 
   function appendArticles(snippet) {
+    //get important info from snippet
     let newHTML = snippet.responseXML.getElementById("newarticles").innerHTML;
     let JSONInput = snippet.responseXML.getElementById("json-variables").innerHTML;
+
+    //parse the JSON
     var JSONVars = JSON.parse(JSONInput);
+
+    //insert the newHTML
     let nextPageElement = document.getElementById("next-page")
     nextPageElement.insertAdjacentHTML("beforebegin", newHTML)
+
+    //reset the value of the next-page element
     nextPageElement.innerHTML = '<a href="" onclick="return false" onmouseup="loadNext()">Older Posts &#8811;</a> ';
     toggleDisable("nav-right", false);
+
+    //update pathToNext for the next snippet; otherwise remove the next-page element.
     hasNext = JSONVars.hasNext;
     if (hasNext) {
       pathToNext = JSONVars.nextURL;
