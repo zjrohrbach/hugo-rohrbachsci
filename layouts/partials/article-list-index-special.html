@@ -38,9 +38,14 @@
 
   }
 
-  function loadNext() {
-    alert('load');
-    return false;
+  function loadNext(nextURL) {
+    let loader = 'Loading';
+    nextPageButton = document.getElementById('next-page');
+
+    nextPageButton.innerHTML = loader;
+
+    let snippet = new XMLHttpRequest();
+    snippet.open("POST", nextURL, true); //I want to understand this function better.  I'd also like to call the TOML argument somehow.
   }
   //-->
 </script>
@@ -67,7 +72,7 @@
   {{ end }}
 
   {{ if $paginator.HasNext }}
-  <div id="next-page"><a href="{{ $paginator.Next.URL }}" onclick="return false" onmouseup="loadNext()">Older Posts &#8811;</a></div>
+  <div id="next-page"><a href="{{ $paginator.Next.URL }}" onclick="return false" onmouseup="loadNext('/snippets/')">Older Posts &#8811;</a></div>
   {{ end }}
     
   <div class="spacer"></div>
