@@ -73,7 +73,9 @@ function appendArticles(snippet) {
   nextPageElement.insertAdjacentHTML("beforebegin", newHTML)
 
   //reset the value of the next-page element
-  nextPageElement.innerHTML = '<a href="" onclick="return false" onmouseup="loadNext()">Older Posts &#8811;</a> ';
+  nextPageElement.innerHTML = '<a href="" onclick="return false" onmouseup="loadNext()">Older Posts &#8811;</a>';
+
+  //it is now okay to scroll right
   toggleDisable("nav-right", false);
 
   //update pathToNext for the next snippet; otherwise remove the next-page element.
