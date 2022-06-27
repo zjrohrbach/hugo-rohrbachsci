@@ -1,10 +1,12 @@
 {{ define "extra-head-matter" }}
-  {{ $script_file := resources.Get "index-scripts.js" }}
-  <script type="text/javascript" src="{{ $script_file.RelPermalink }}"></script>
+  {{ $scrolling_script := resources.Get "scrolling.js" }}
+  {{ $pagination_script := resources.Get "live-pagination.js" }}
+  <script type="text/javascript" src="{{ $scrolling_script.RelPermalink }}"></script>
+  <script type="text/javascript" src="{{ $pagination_script.RelPermalink }}"></script>
 {{ end }}
 
 {{ $showMiniSection := true }}
-{{ $paginator := .Paginate .Site.RegularPages  }}
+{{ $paginator := .Paginate .Site.RegularPages }}
 
 {{ if eq $paginator.PageNumber 1 }}
 <h1>Recent Posts</h1>
