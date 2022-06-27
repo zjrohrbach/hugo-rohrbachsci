@@ -14,7 +14,12 @@
 <h1>Posts</h1>
 {{ end }}
 
-{{ $next_url := "/page/2/snip.html" }}
+{{/* this code figures out the url of the page 2 snippet */}}
+{{ if eq $paginator.PageNumber 1 }}
+  {{ .Scratch.Set "nextURL" (substr $paginator.Next.URL 0 (sub (len $paginator.Next.URL) 1)) }}
+{{- end -}}
+{{- .Scratch.Add "nextURL" ( .OutputFormats.Get "HTML_snippet" ).RelPermalink -}}
+{{- $next_url := .Scratch.Get "nextURL" -}}
 
 <div class="list-container index-special" id="scroll_window" onscroll="updateHighlight()" onload="updateHighlight()">
   <div class="spacer"></div>  
