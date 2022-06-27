@@ -14,6 +14,7 @@
 <h1>Posts</h1>
 {{ end }}
 
+{{ $next_url := "/page/2/snip.html" }}
 
 <div class="list-container index-special" id="scroll_window" onscroll="updateHighlight()" onload="updateHighlight()">
   <div class="spacer"></div>  
@@ -28,7 +29,7 @@
 
   {{ if $paginator.HasNext }}
     {{ if eq $paginator.PageNumber 1 }}
-      <div id="next-page"><a href="{{ $paginator.Next.URL }}" onclick="return false" onmouseup="loadNext()">Older Posts &#8811;</a></div>
+      <div id="next-page"><a href="{{ $paginator.Next.URL }}" onclick="return false" onmouseup="loadNext('{{ $next_url }}')">Older Posts &#8811;</a></div>
     {{ else }}
     {{/* No Javascript for later pages */}}
       <div id="next-page"><a href="{{ $paginator.Next.URL }}">Older Posts &#8811;</a></div>

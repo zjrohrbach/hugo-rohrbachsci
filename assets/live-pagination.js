@@ -5,12 +5,8 @@
 //Everytime next link is clicked, this is the order of functions:
 // loadNext() -> loadDoc() -> appendArticles()
 
-//This variable holds the path to the next HTML snippet.  It gets updated
-//every time appendArticles() is called.
-pathToNext = '/snippets/';
-
 function loadDoc(url, cFunction) {
-  let snippet = new XMLHttpRequest();
+  const snippet = new XMLHttpRequest();
   snippet.open("POST", url);
   snippet.responseType = 'document';
   snippet.send()
@@ -23,35 +19,33 @@ function loadDoc(url, cFunction) {
 
 function appendArticles(snippet) {
   //get important info from snippet
-  let newHTML = snippet.responseXML.getElementById("newarticles").innerHTML;
-  let JSONInput = snippet.responseXML.getElementById("json-variables").innerHTML;
+  const newHTML = snippet.responseXML.getElementById("newarticles").innerHTML;
+  const JSONInput = snippet.responseXML.getElementById("json-variables").innerHTML;
 
   //parse the JSON
-  var JSONVars = JSON.parse(JSONInput);
+  const JSONVars = JSON.parse(JSONInput);
 
   //insert the newHTML
-  let nextPageElement = document.getElementById("next-page")
-  nextPageElement.insertAdjacentHTML("beforebegin", newHTML)
-
-  //reset the value of the next-page element
-  nextPageElement.innerHTML = '<a href="" onclick="return false" onmouseup="loadNext()">Older Posts &#8811;</a>';
+  const nextPageElement = document.getElementById("next-page");
+  nextPageElement.insertAdjacentHTML("beforebegin", newHTML);
 
   //it is now okay to scroll right
   toggleDisable("nav-right", false);
 
   //update pathToNext for the next snippet; otherwise remove the next-page element.
-  hasNext = JSONVars.hasNext;
+  const hasNext = JSONVars.hasNext;
   if (hasNext) {
-    pathToNext = JSONVars.nextURL;
+    const pathToNext = JSONVars.nextURL;
+    nextPageElement.innerHTML = '<a href="" onclick="return false" onmouseup="loadNext(\'' + pathToNext + '\')">Older Posts &#8811;</a>';
   } else {
     nextPageElement.remove();
   }
 }
 
-function loadNext() {
-  let loader = 'Loading';
+function loadNext(url) {
+  const loader = 'Loading';
   nextPageButton = document.getElementById('next-page');
 
   nextPageButton.innerHTML = loader;
-  loadDoc(pathToNext, appendArticles);
+  loadDoc(url, appendArticles);
 }
