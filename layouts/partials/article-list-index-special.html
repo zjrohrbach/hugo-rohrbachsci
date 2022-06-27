@@ -1,8 +1,11 @@
 {{ define "extra-head-matter" }}
-  {{ $scrolling_script := resources.Get "scrolling.js" }}
-  {{ $pagination_script := resources.Get "live-pagination.js" }}
-  <script type="text/javascript" src="{{ $scrolling_script.RelPermalink }}"></script>
-  <script type="text/javascript" src="{{ $pagination_script.RelPermalink }}"></script>
+  {{ $scrolling_script_full := resources.Get "scrolling.js" }}
+  {{- $scrolling_script_min := $scrolling_script_full | resources.Minify -}}
+  {{- $pagination_script_full := resources.Get "live-pagination.js" -}}
+  {{- $pagination_script_min := $pagination_script_full | resources.Minify  -}}
+  
+  <script type="text/javascript" src="{{ $scrolling_script_min.RelPermalink }}"></script>
+  <script type="text/javascript" src="{{ $pagination_script_min.RelPermalink }}"></script>
 {{ end }}
 
 {{ $showMiniSection := true }}
